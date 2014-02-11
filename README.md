@@ -1,2 +1,3 @@
-pantry
+Pantry
 ======
+A recipe suggestion app
