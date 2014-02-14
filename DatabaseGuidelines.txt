@@ -1,12 +1,18 @@
 I was looking for some tips for you guys and found these.
 They will probably make more sense once you jump in but i'm saving them here
 
-1)Keep different types of data separate - don't store addresses in your order table, link to an address in a separate addresses table, for example.
+1)Keep different types of data separate - don't store addresses in your order table, 
+link to an address in a separate addresses table, for example.
 
-2)I personally like having an integer or long surrogate key on each table (that holds data, not those that link different tables together, e,g., m:n relationships) that is the primary key.
+2)I personally like having an integer or long surrogate key on each table 
+(that holds data, not those that link different tables together, e,g., m:n relationships) that is the primary key.
 
 3)I also like having a created and modified timestamp column.
 
-4)Ensure that every column that you do "where column = val" in any query has an index. Maybe not the most perfect index in the world for the data type, but at least an index.
+4)Ensure that every column that you do "where column = val" in any query has an index. 
+Maybe not the most perfect index in the world for the data type, but at least an index.
 
-5)Set up your foreign keys. Also set up ON DELETE and ON MODIFY rules where relevant, to either cascade or set null, depending on your object structure (so you only need to delete once at the 'head' of your object tree, and all that object's sub-objects get removed automatically).
+5)Set up your foreign keys. Also set up ON DELETE and ON MODIFY rules where relevant, 
+to either cascade or set null, depending on your object structure 
+(so you only need to delete once at the 'head' of your object tree, 
+and all that object's sub-objects get removed automatically).
