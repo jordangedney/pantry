@@ -4,8 +4,6 @@ A recipe suggestion app, currently being developed for web
 
 
 
-
-======
 Programming Rules
 ======
 1. Rule of Modularity: Write simple parts connected by clean interfaces. 
@@ -25,7 +23,9 @@ Programming Rules
 15. Rule of Optimization: Prototype before polishing. Get it working before you optimize it.
 16. Rule of Diversity: Distrust all claims for “one true way”.
 17. Rule of Extensibility: Design for the future, because it will be here sooner than you think.
-======
+
+
+
 Database Guidelines
 ======
 I was looking for some tips for you guys and found these.
