@@ -6,12 +6,21 @@
 	background: #FFF; /* Old browsers */
 	color: #000;
 }
+.title-area img{
+	position: relative;
+}
 .top-bar-section {
 	padding-top: 45px;
-	color: #000;
+	color: #000; 
 }
-.hasdropdown {
+.has-dropdown {
 	background-color: #db4437;
+}
+.has-form{
+	background-color: #fff!important;
+}
+.has-form button {
+	min-height: auto;
 }
 .top-bar-section li a:not(.button) {
 	background-color: #FFF!important;
