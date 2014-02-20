@@ -22,9 +22,9 @@
 	position: absolute;
 	bottom: 0;
 }*/
-/*.top-bar-section li a:not(.button) {
-	background-color: #db4437!important;
-}*/
+.top-bar-section li a:not(.button) {
+	background-color: #FBFDDD!important;
+}
 .top-bar-section li a:not(.button):hover {
-    background-color: #db4437!important; /*example */
+    background-color: #FBFDDD!important; /*example */
 }
