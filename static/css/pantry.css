@@ -1,0 +1,22 @@
+.top-bar {
+	min-height: 90px;
+    line-height: 58px;
+    margin-bottom: 0;
+    background-color: #db4437;
+}
+.top-bar-section {
+	padding-top: 45px;
+}
+.hasdropdown {
+	background-color: #db4437;
+}
+/*.top-bar-section {
+	position: absolute;
+	bottom: 0;
+}*/
+/*.top-bar-section li a:not(.button) {
+	background-color: #db4437!important;
+}*/
+.top-bar-section li a:not(.button):hover {
+    background-color: #db4437!important; /*example */
+}
