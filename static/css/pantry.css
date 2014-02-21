@@ -64,6 +64,7 @@ body{
 	display:inline-block;
 	padding:10px 0px 5px;
 	background-color: #EB0000;
+	font-family: "Varela Round";
 }
 .top-bar-section.center {
 	text-align:center;
@@ -100,18 +101,44 @@ body{
 }
 .result {
 	display: inline-block;
-	padding-left: 10px;
-	padding-top: 10px;
+	padding: 10px 30px 30px 10px;
 	width:80%;
 	overflow:auto;
 	height: 100%;
 	float:left !important;
 }
 div .panel {
-	min-height: 200px;
-	min-width: 200px;
+	height: 200px;
+	width: 200px;
 	background-color: #FFF;
 	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 	float:left;
 	margin: 20px 0px 0px 20px;
+	padding:0px;
+	overflow:hidden;
+	position:relative;
+	
+	border:none;
+}
+div.panel.expanded{
+	width: 100%;
+}
+.panel img{
+	clip:rect(0px,200px,150px,0px);
+}
+.panel h2{
+	position: absolute;
+	z-index: 999;
+	bottom: 0px;
+	font-size:22px;
+	background: rgba(0,0,0,.6);
+	color: #FFF;
+	height:auto;
+	min-height:50px;
+	width:200px;
+	margin:0;
+	font-family:"Varela Round";
+	text-align:center;
+	padding: 15px 0px 0px 0px;
+	cursor:pointer;
 }
