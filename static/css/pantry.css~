@@ -12,14 +12,15 @@ body{
 	font-family:"Varela Round";
 	background: url('../images/plaid2.png') repeat;
 }
+body *{
+	font-family:"Varela Round";
+}
 .top-bar {
     background-color: #fff;
     box-shadow: 1px 0 4px rgba(0, 0, 0, 0.4);
     height:90px;
-    position:fixed;
     z-index: 999;
     width:100%;
-    top:0;
 }
 .top-bar .name h1 a{
 	margin: 0px;
@@ -66,9 +67,10 @@ body{
 	display:inline-block;
 	padding:10px 0px 5px;
 	background-color: #EB0000;
+	font-family: "Varela Round";
 }
 .top-bar-section.center {
-	/*text-align:center;*/
+	text-align:center;
 }
 .side-nav{
 	background:#fff;
@@ -102,18 +104,87 @@ body{
 }
 .result {
 	display: inline-block;
-	padding-left: 10px;
-	padding-top: 10px;
+	padding: 10px 30px 30px 10px;
 	width:80%;
 	overflow:auto;
 	height: 100%;
 	float:left !important;
 }
 div .panel {
-	min-height: 200px;
-	min-width: 200px;
+	height: 200px;
+	width: 200px;
 	background-color: #FFF;
 	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 	float:left;
 	margin: 20px 0px 0px 20px;
+	padding:0px;
+	overflow:hidden;
+	position:relative;
+	
+	border:none;
+}
+div.panel.expanded{
+	width: 100%;
+}
+.panel img{
+	width:200px;
+}	
+.panel.expanded img{
+	float:left;
+	width:20%;
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
+}
+.panel.expanded div.recipe-content{
+	float:left;
+	width:80%;
+}
+.panel.expanded div.recipe-content h1{
+	text-align:center;
+	margin: 0px 0px 0px 0px;
+	box-shadow: 1px 0 4px rgba(0, 0, 0, 0.4);
+	z-index:999;
+}
+.panel.expanded div.recipe-content h1 span{
+	font-size:12px;
+	float:right;
+	padding: 5px;
+	cursor:pointer;
+}
+.panel.expanded div.recipe-content .recipe-info{
+	float:left;
+	width:33.3%;
+	margin:0;
+	top:50px;
+}
+.panel.expanded div.recipe-content .recipe-center{
+	float:left;
+	width:33.3%;
+	margin:0;
+	top:50px;
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
+}
+.panel.expanded div.recipe-content .recipe-info h2{
+	width:100%;
+	font-size:20px;
+	text-align:center;
+	margin:5px 0px 5px 0px;
+}
+.panel>h2{
+	position: absolute;
+	z-index: 999;
+	bottom: 0px;
+	font-size:22px;
+	background: rgba(0,0,0,.6);
+	color: #FFF;
+	height:auto;
+	min-height:50px;
+	width:200px;
+	margin:0;
+	font-family:"Varela Round";
+	text-align:center;
+	padding: 15px 0px 0px 0px;
+	cursor:pointer;
+}
+.panel.expanded>h2{
+	height:0px;
 }
