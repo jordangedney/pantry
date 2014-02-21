@@ -22,7 +22,7 @@
 				<input type="text" placeholder="FOOD" id="search-bar"><a href="#" class="alert button expand" id="search-button">Search</a>
 			</div>
 		</section>
-		<section class="top-bar-section right">
+		<section class="top-bar-section right has-dropdown">
 			    <div class="dropdown-label">
 			    	<a href="#">login/user</a>
 			    </div>
