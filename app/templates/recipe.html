@@ -1,0 +1,11 @@
+<html>
+  <head>
+    <title>Pantry</title>
+  </head>
+  <body>
+    <h1>Hi, good day sir!</h1>
+    {% for recipe in recipes %}
+    <p>{{recipe.name}} requires: <b>{{recipe.time}}</b> minutes</p>
+    {% endfor %}
+  </body>
+</html>
