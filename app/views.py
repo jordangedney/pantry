@@ -1,5 +1,9 @@
 from app import app
-from flask import render_template, request
+from flask import render_template, request, flash, redirect
+from sqlalchemy import create_engine
+from forms import LoginForm
+
+
 
 @app.route('/')
 @app.route('/index')
@@ -7,18 +11,17 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/login', methods = ['GET', 'POST'])
 def login():
-    error = None
-    if request.method == 'POST':
-        if valid_login(request.form['username'],
-                       request.form['password']):
-            return log_the_user_in(request.form['username'])
-        else:
-            error = 'Invalid username/password'
-    # the code below is executed if the request method
-    # was GET or the credentials were invalid
-    return render_template('login.html', error=error)
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash('Login requested for OpenID="' + form.openid.data + 
+        	   '", remember_me=' + str(form.remember_me.data))
+        return redirect('/index')
+    return render_template('login.html', 
+        title = 'Sign In',
+        form = form,
+        providers = app.config['OPENID_PROVIDERS'])
 
 
 @app.route('/recipe')
@@ -43,6 +46,8 @@ def recipe():
         }
     ]
     return render_template('recipe.html', recipes=recipes)
+
+
 
 
 
