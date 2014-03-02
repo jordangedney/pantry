@@ -1,4 +1,5 @@
 from app import app
+import models
 from flask import render_template, request, flash, redirect
 from sqlalchemy import create_engine
 from forms import LoginForm
@@ -24,28 +25,10 @@ def login():
         providers = app.config['OPENID_PROVIDERS'])
 
 
-@app.route('/recipe')
-def recipe():
-    recipes = [ # fake recipes, until quereying works
-        { 
-            'name': 'Egg Sandwich', 
-            'ingredients': { 
-            				'eggs': '2',
-            				'bread': '2',  
-            				}, 
-           	'time': '10'
-        },
-        { 
-            'name': 'PBJ', 
-            'ingredients': { 
-            				'peanut butter': '2',
-            				'jelly': '2',
-            				'bread': '2',  
-            				}, 
-           	'time': '5'
-        }
-    ]
-    return render_template('recipe.html', recipes=recipes)
+@app.route('/get_recipe')
+def get_recipe():
+    recipes = models.Recipe.query.all()
+    return jsonify(recipes)
 
 
 
