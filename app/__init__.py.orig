@@ -1,7 +1,11 @@
 from flask import Flask
+<<<<<<< HEAD
 from flask.ext.sqlalchemy import SQLAlchemy
 import sqlalchemy
 from sqlalchemy import create_engine
+=======
+import SQLAlchemy
+>>>>>>> ac73f83602fa9005cd1099dd0db58296544f1a01
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -12,5 +16,13 @@ engine_url = sqlalchemy.engine.url.URL('mysql',
                                         port=3306,
                                         database='Pantry',
                                         query=None)
+
+engine = create_engine(engine_url)
+<<<<<<< HEAD
+db = SQLAlchemy(app)
+#db = SQLAlchemy(app, session_options={'engine':engine})
+=======
+>>>>>>> ac73f83602fa9005cd1099dd0db58296544f1a01
+connection = engine.connect()
 
 from app import views, models
