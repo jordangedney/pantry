@@ -1,4 +1,4 @@
-from app import app
+from app import app, db
 import models
 from flask import render_template, request, flash, redirect
 from sqlalchemy import create_engine
@@ -11,21 +11,24 @@ from forms import LoginForm, UserForm
 def index():
     return render_template('index.html')
 
-@app.route('/user', methods = ['GET', 'POST'])
+@app.route('/new_user', methods = ['GET', 'POST'])
 def new_user():
     form = UserForm()
     if form.validate_on_submit():
-        flash('New user created!')
-        return redirect('/index')
+        user = models.User(first_name = form.first.data,
+                           last_name = form.last.data,  
+                           email = form.email.data)
+        db.session.add(user)
+        db.session.commit()
+
+        flash(user.first_name + " " + user.last_name + " created!")
     return render_template('new_user.html', form = form)
 
 
 @app.route('/get_users')
-def get_recipe():
+def get_users():
     users = models.User.query.all()
     return render_template('print_users.html', users = users)
-
-
 
 
 
