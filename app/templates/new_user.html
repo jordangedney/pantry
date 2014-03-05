@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>User Creation Kit</h1>
+<form action="" method="post" name="new_user">
+    {{form.hidden_tag()}}
+    <p>
+        Please enter your first name below: <br>
+        {{form.first(size=80)}} <br>
+        Please enter your last name below: <br>
+        {{form.last(size=80)}} <br>
+        And your email: <br>
+        {{form.email(size=80)}} <br>
+    </p>
+    <p><input type="submit" value="Create User"></p>
+</form>
+{% endblock %}

@@ -2,7 +2,7 @@ from app import app
 import models
 from flask import render_template, request, flash, redirect
 from sqlalchemy import create_engine
-from forms import LoginForm
+from forms import LoginForm, UserForm
 
 
 
@@ -10,6 +10,15 @@ from forms import LoginForm
 @app.route('/index')
 def index():
     return render_template('index.html')
+
+@app.route('/user', methods = ['GET', 'POST'])
+def new_user():
+    form = UserForm()
+    if form.validate_on_submit():
+        flash('New user created!')
+        return redirect('/index')
+    return render_template('new_user.html', form = form)
+
 
 
 @app.route('/login', methods = ['GET', 'POST'])
