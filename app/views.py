@@ -25,6 +25,16 @@ def new_user():
     return render_template('new_user.html', form = form)
 
 
+@app.route('/delete_user/<email>')
+def delete_user(email):
+    users = models.User.query.filter_by(email=email)
+    for user in users:
+        db.session.delete(user)
+        db.session.commit()
+        flash(user.first_name + " " + user.last_name + " deleted!")
+    return redirect('/index')
+
+
 @app.route('/get_users')
 def get_users():
     users = models.User.query.all()
