@@ -13,4 +13,6 @@ engine_url = sqlalchemy.engine.url.URL('mysql',
                                         database='Pantry',
                                         query=None)
 
+db = SQLAlchemy(app)
+
 from app import views, models
