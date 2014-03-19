@@ -4,8 +4,6 @@ from flask import render_template, request, flash, redirect
 from sqlalchemy import create_engine
 from forms import LoginForm, UserForm
 
-
-
 @app.route('/')
 @app.route('/index')
 def index():
