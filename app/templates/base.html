@@ -1,22 +1,50 @@
 <html>
-
   <head>
-    <title>Pantry</title>
+      <title>Pantry</title>
+      <link href="http://fonts.googleapis.com/css?family=Varela+Round:400" rel="stylesheet" type="text/css">
+      <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600italic,600,700italic,700,800italic,800" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="../static/foundation-5.1.1/css/foundation.min.css">
+      <link rel="stylesheet" href="../static/css/pantry.css">
+      <script src="../static/foundation-5.1.1/js/vendor/modernizr.js"></script>
   </head>
-
   <body>
-    <div>Pantry: <a href="/index">Home</a></div>
-    <hr>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul>
-    {% for message in messages %}
-        <li>{{ message }} </li>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-    </ul>
-    {% block content %}{% endblock %}
+    <nav class="top-bar" data-topbar>
+      <section class="top-bar-section left">
+          <h1>
+            <a href="/index">
+              <img src="../static/images/pantry3.png" height="300px" width="150px" alt=""/>
+            </a>
+          </h1>
+      </section>
+      <section class="top-bar-section center">
+        <div>
+          <input type="text" placeholder="Search For A Recipie..." id="search-bar"><a href="#" class="alert button expand" id="search-button">Search</a>
+        </div>
+      </section>
+      <section class="top-bar-section right">
+            {% block user %}
+            {% endblock %}
+      </section>
+    </nav>
+    <div class="content">
+      <div class="row">
+        <div class="side-col large-4 columns">
+          <ul class="side-nav">
+            {% block sidenav %}
+            {% endblock %}
+          </ul>
+        </div>
+        <div class="result large-4 columns">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>
+    <script src="../static/foundation-5.1.1/js/vendor/jquery.js"></script>
+    <script src="../static/foundation-5.1.1/js/foundation.min.js"></script>
+    <script src="../static/js/jquery-ui.custom.js"></script>
+    <script src="../static/js/pantry.js"></script>
+    <script>
+    $(document).foundation();
+    </script>
   </body>
-
 </html>
