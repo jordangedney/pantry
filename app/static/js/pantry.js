@@ -39,23 +39,19 @@ function collapse(panel){
 
 function getRecipes(input) {
 	$.ajax({
-		type: 'GET',
-		url: 'data.txt',
-		dataType: 'text',
-		aysnc: true,
+		url: '/send_fake_json',
+		dataType: 'json',
 		success: function(data) {
-			var json = $.parseJSON(data);
-			console.log(json);
-			parseData(json);
+			parseData(data);
 		},
 		error: function() {
 			//failed GET request, inform user
-			$('.result').html('<p class="error"><strong>Opps!</strong> Try that again in a few minutes.</p>');
+			$('.result').html('<p class="error" style="text-align: center;"><strong>Opps!</strong> Try that again in a few minutes.</p>');
 		}
 	});
-	return false;
 } 
 
 function parseData(data) {
-	var 
+	console.log(data);
+	
 }

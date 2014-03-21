@@ -1,5 +1,23 @@
-<!doctype html>
 {% extends "base.html" %}
-{% block content %}
-<h1> Teh Index </h1>
+{% block user %}
+	<div class="dropdown-label">
+	    <a href="#">login/user</a>
+	</div>
+	<ul class="dropdown">
+		<li><a href="#">logout</a></li>
+	</ul>
 {% endblock %}
+{% block sidenav %}
+	<h4>Filter Recipes</h4>
+	<hr>
+	<li><a href="#">Link 11111111111</a></li>
+	<li><a href="#">Link 22222222</a></li>
+	<li><a href="#">Link 333333333</a></li>
+	<li><a href="#">Link 4444444</a></li>
+{% endblock %}
+{% block content %}
+	<div class="row suggest-wrapper">
+		<a href="#" class="button" id="suggest-button">Suggest a Recipe</a>
+	</div>
+{% endblock %}
+	

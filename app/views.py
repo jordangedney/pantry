@@ -1,9 +1,8 @@
 from app import app, db
 import models
-from flask import render_template, request, flash, redirect
+from flask import render_template, request, flash, redirect, jsonify
 from sqlalchemy import create_engine
 from forms import LoginForm, UserForm
-
 
 
 @app.route('/')
@@ -45,8 +44,6 @@ def get_users():
 
 
 
-
-
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -58,3 +55,10 @@ def login():
         title = 'Sign In',
         form = form,
         providers = app.config['OPENID_PROVIDERS'])
+
+@app.route('/send_fake_json')
+def send_fake_json():
+    data = [{"name": "PBJ", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" },
+    {"name": "Pizza", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" },
+    {"name": "Cheeseburger", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" }]
+    return jsonify(data=data);
