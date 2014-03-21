@@ -14,6 +14,8 @@ flask
 flask-wtf
 flask-sqlalchemy
 sqlalchemy
+flask-login
+flask-openid
 ```
 
 ... a lot more. Add any others that you guys can think of

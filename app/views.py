@@ -11,6 +11,9 @@ from forms import LoginForm, UserForm
 def index():
     return render_template('index.html')
 
+
+# User Related Views ---------------------------------------------------------
+
 @app.route('/new_user', methods = ['GET', 'POST'])
 def new_user():
     form = UserForm()
