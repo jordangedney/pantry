@@ -13,9 +13,22 @@ class User(db.Model):
     email = db.Column(db.String(120), unique = True)
     recipes = db.relationship('Recipe', backref = 'author', lazy = 'dynamic')
     role = db.Column(db.SmallInteger, default = ROLE_USER)
+    
+    def is_authenticated(self):
+        return True
+    
+    def is_active(self):
+        return True
+    
+    def is_anonymous(self):
+        return False
+    
+    def get_id(self):
+        return unicode(self.id)
 
     def __repr__(self):
-        return '<User %r>' % (self.first_name + " " + self.last_name)
+        return '<User %r>' % (self.first_name)
+        #return '<User %r>' % (self.first_name + " " + self.last_name)
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key = True)
