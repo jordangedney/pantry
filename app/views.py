@@ -41,44 +41,7 @@ def get_users():
     users = models.User.query.all()
     return render_template('print_users.html', users = users)
 
-@app.route('/login', methods = ['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        flash('Login requested for OpenID="' + form.openid.data + 
-               '", remember_me=' + str(form.remember_me.data))
-        return redirect('/index')
-    return render_template('login.html', 
-        title = 'Sign In',
-        form = form,
-        providers = app.config['OPENID_PROVIDERS'])
-
-<<<<<<< HEAD
-# Search Related Views ---------------------------------------------------------
-
-@app.route('/results')
-def results():
-    return render_template('search_results.html')
-=======
-
 # Recipe Related Views -------------------------------------------------------
-
-@app.route('/new_recipe', methods = ['GET', 'POST'])
-def new_recipe():
-    form = UserForm()
-    if form.validate_on_submit():
-        user = models.User(first_name = form.first.data,
-                           last_name = form.last.data,  
-                           email = form.email.data)
-        db.session.add(user)
-        db.session.commit()
-
-        flash(user.first_name + " " + user.last_name + " created!")
-    return render_template('new_user.html', form = form)
-
-
-
->>>>>>> 31b83d677390b3057c340d92931c8c8aa83e8215
 
 @app.route('/send_fake_json')
 def send_fake_json():
