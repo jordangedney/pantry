@@ -22,12 +22,20 @@
         </div>
       </section>
       <section class="top-bar-section right">
+      		{% if g.user.is_authenticated() %}
             <div class="dropdown-label">
-                <a href="#">login/user</a>
+                <a href="{{ url_for('user', email = g.user.email) }}">User Page</a>
             </div>
-            <ul class="dropdown">
-              <li><a href="#">logout</a></li>
-            </ul>
+            
+            <div class="dropdown-label">
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+            {% endif %}
+            {% if g.user.is_authenticated() == false %}
+            <div class="dropdown-label">
+                <a href="{{ url_for('login') }}">Login</a>
+            </div>
+            {% endif %}
       </section>
     </nav>
     <div class="content">

@@ -8,7 +8,7 @@ from forms import LoginForm, UserForm
 
 @app.route('/')
 @app.route('/index')
-@login_required
+#@login_required
 def index():
     user = g.user
     return render_template('index.html')
@@ -52,7 +52,7 @@ def after_login(resp):
         nickname = resp.nickname
         if nickname is None or nickname == "":
             nickname = resp.email.split('@')[0]
-        user = User(first_name = nickname, email = resp.email, role = ROLE_USER)
+        user = User(first_name = nickname, last_name = nickname, email = resp.email, role = ROLE_USER)
         db.session.add(user)
         db.session.commit()
     remember_me = False
@@ -61,6 +61,25 @@ def after_login(resp):
         session.pop('remember_me', None)
     login_user(user, remember = remember_me)
     return redirect(request.args.get('next') or url_for('index'))
+
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+
+
+@app.route('/user/<email>')
+@login_required
+def user(email):
+    user = User.query.filter_by(email = email).first()
+    if user == None:
+        flash('User ' + nickname + ' not found.')
+        return redirect(url_for('index'))
+    
+    return render_template('user.html', user = user)
 
 
 
