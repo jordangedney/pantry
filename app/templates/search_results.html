@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block sidenav %}
+	<h4>Filter Recipes</h4>
+	<hr>
+	<li><a href="#">Link 11111111111</a></li>
+	<li><a href="#">Link 22222222</a></li>
+	<li><a href="#">Link 333333333</a></li>
+	<li><a href="#">Link 4444444</a></li>
+{% endblock %}
+{% block content %}
+	{% raw %}
+	<script id="recipe-template" type="text/x-handlebars-template">
+		{{#recipes}}
+	  	<div class="panel">
+	  		<img src={{{image}}} >
+			<h2>{{name}}</h2>
+		</div>
+  		{{/recipes}}
+	</script>
+	{% endraw %}
+{% endblock %}
