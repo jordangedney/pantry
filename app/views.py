@@ -56,6 +56,12 @@ def login():
         form = form,
         providers = app.config['OPENID_PROVIDERS'])
 
+# Search Related Views ---------------------------------------------------------
+
+@app.route('/results')
+def results():
+    return render_template('search_results.html')
+
 @app.route('/send_fake_json')
 def send_fake_json():
     data = [{"name": "PBJ", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" },

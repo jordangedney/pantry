@@ -39,6 +39,12 @@ function collapse(panel){
 
 function getRecipes(input) {
 	$.ajax({
+		url: '/results',
+		error: function() {
+			console.log("Error");
+		}
+	});
+	$.ajax({
 		url: '/send_fake_json',
 		dataType: 'json',
 		success: function(data) {
@@ -52,6 +58,11 @@ function getRecipes(input) {
 } 
 
 function parseData(data) {
-	console.log(data);
-	
+	//console.log(data);
+	var json_data = JSON.stringify(data, null, 2);
+	//console.log(json_data);
+	var source = $('#recipe-template');
+	var template = Handlebars.compile(source);
+	console.log("hi");
+	$('.result') = template(json_data);
 }
