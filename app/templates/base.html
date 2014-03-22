@@ -22,8 +22,12 @@
         </div>
       </section>
       <section class="top-bar-section right">
-            {% block user %}
-            {% endblock %}
+            <div class="dropdown-label">
+                <a href="#">login/user</a>
+            </div>
+            <ul class="dropdown">
+              <li><a href="#">logout</a></li>
+            </ul>
       </section>
     </nav>
     <div class="content">
@@ -42,6 +46,7 @@
     <script src="../static/foundation-5.1.1/js/vendor/jquery.js"></script>
     <script src="../static/foundation-5.1.1/js/foundation.min.js"></script>
     <script src="../static/js/jquery-ui.custom.js"></script>
+    <script src="../static/js/handlebars.js"></script>
     <script src="../static/js/pantry.js"></script>
     <script>
     $(document).foundation();
