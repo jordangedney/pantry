@@ -41,6 +41,11 @@ def get_users():
     users = models.User.query.all()
     return render_template('print_users.html', users = users)
 
+# Search Related Views -------------------------------------------------------
+@app.route('/results')
+def results():
+    return render_template('search_results.html')
+
 # Recipe Related Views -------------------------------------------------------
 
 @app.route('/send_fake_json')
