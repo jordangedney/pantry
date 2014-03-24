@@ -12,12 +12,10 @@ class UserForm(Form):
 class SearchForm(Form):
     search = TextField('search', validators = [Required()])
     
-if False: """
 class RecipeForm(Form):
     name = TextField('name', validators = [Required()])
     ingredients = TextField('ingredients', validators = [Required()])
     instructions = TextField('instructions', validators = [Required()])
     time = IntegerField('time', validators = [Required()])
     category = TextField('category', validators = [Required()])
-    servings = IntegerField('servings', validators = [Required()])
-"""
+    servings = IntegerField('', validators = [Required()])
