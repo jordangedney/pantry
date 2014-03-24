@@ -1,3 +1,4 @@
+#!flask/bin/python
 # Keep .pyc files from being generated
 import sys
 sys.dont_write_bytecode = True

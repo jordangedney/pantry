@@ -23,11 +23,9 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         session['remember_me'] = form.remember_me.data
-        return oid.try_login(form.openid.data, ask_for = ['nickname', 'email'])
-    return render_template('login.html',
-                           title = 'Sign In',
-                           form = form,
-                           providers = app.config['OPENID_PROVIDERS'])
+        return oid.try_login('https://www.google.com/accounts/o8/id',
+                ask_for = ['nickname', 'email'], ask_for_optional=['fullname'])
+    return render_template('login.html', title = 'Sign In', form = form)
 
 
 @app.before_request
@@ -48,9 +46,13 @@ def after_login(resp):
     user = User.query.filter_by(email = resp.email).first()
     if user is None:
         nickname = resp.nickname
+        fullname = resp.fullname
+        if fullname is not None:
+            firstname = fullname.split(' ')[0]
+            lastname = fullname.split(' ')[1]
         if nickname is None or nickname == "":
             nickname = resp.email.split('@')[0]
-        user = User(first_name = nickname, last_name = nickname, email = resp.email, role = ROLE_USER)
+        user = User(first_name = firstname, last_name = lastname, email = resp.email, role = ROLE_USER)
         db.session.add(user)
         db.session.commit()
     remember_me = False

@@ -3,13 +3,11 @@ from wtforms import TextField, BooleanField, IntegerField
 from wtforms.validators import Required
 
 class LoginForm(Form):
-    openid = TextField('openid', validators = [Required()])
     remember_me = BooleanField('remember_me', default = True)
 
 class UserForm(Form):
-    first = TextField('first', validators = [Required()])
-    last = TextField('last', validators = [Required()])
-    email = TextField('email', validators = [Required()])
+    first_name = TextField('first', validators = [Required()])
+    last_name = TextField('last', validators = [Required()])
 
 class RecipeForm(Form):
     name = TextField('name', validators = [Required()])
