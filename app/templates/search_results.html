@@ -8,14 +8,21 @@
 	<li><a href="#">Link 4444444</a></li>
 {% endblock %}
 {% block content %}
+	{% for result in results %}
+	<div class="panel">
+  		<img src="{{ result.image }}">
+		<h2>{{ result.name }}</h2>
+	</div>
+	{% endfor %}
 	{% raw %}
-	<script id="recipe-template" type="text/x-handlebars-template">
+	<!--database: result.image hardcodejson: result['image']-->
+	<!--script id="recipe-template" type="text/x-handlebars-template">
 		{{#recipes}}
 	  	<div class="panel">
 	  		<img src={{{image}}} >
 			<h2>{{name}}</h2>
 		</div>
   		{{/recipes}}
-	</script>
+	</script-->
 	{% endraw %}
 {% endblock %}

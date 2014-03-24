@@ -3,7 +3,7 @@ from models import User, ROLE_USER, ROLE_ADMIN
 from flask import render_template, request, flash, redirect, session, url_for, request, g, jsonify
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy import create_engine
-from forms import LoginForm, UserForm
+from forms import LoginForm, UserForm, SearchForm
 
 
 @app.route('/')
@@ -134,13 +134,19 @@ def new_recipe():
 def results():
     return render_template('search_results.html')
 
-# Recipe Related Views -------------------------------------------------------
-
-@app.route('/send_fake_json')
-def send_fake_json():
-    data = [{"name": "PBJ", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" },
+@app.route('/get_results', methods=['POST'])
+def search_results():
+    form = SearchForm()
+    if not form.validate_on_submit():
+        flash("Please enter something to search for!")
+        return redirect('/index')
+    
+    #results = models.Recipes.query.filter_by(ingredient = form.search.data)   
+    results = [{"name": "PBJ", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" },
     {"name": "Pizza", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" },
     {"name": "Cheeseburger", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" }]
-    return jsonify(data=data)
-
-
+    results = Recipes.query.filter_by(ingredient = ingredient)
+    #if results == None:
+    #    flash('Results ' + ingredient + ' not found.')
+    #    return redirect(url_for('index'))
+    return render_template('search_results.html', results = results)

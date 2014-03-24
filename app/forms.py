@@ -9,6 +9,10 @@ class UserForm(Form):
     first_name = TextField('first', validators = [Required()])
     last_name = TextField('last', validators = [Required()])
 
+class SearchForm(Form):
+    search = TextField('search', validators = [Required()])
+    
+if False: """
 class RecipeForm(Form):
     name = TextField('name', validators = [Required()])
     ingredients = TextField('ingredients', validators = [Required()])

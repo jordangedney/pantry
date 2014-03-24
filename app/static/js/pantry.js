@@ -2,9 +2,11 @@ jQuery('document').ready(function(){
 	jQuery('.result').on('click', '.panel h2', function(){
 		expand(jQuery(this).parent('.panel'));
 	});
-	$('#search-button').click(function() {
+	$('#search-button').blur(function() {
 		var input = $('#search-bar').val();
-		getRecipes(input);
+		if(input.length === 0) {
+			return false;
+		}
 	});
 });
 function expand(panel){
@@ -35,34 +37,4 @@ function collapse(panel){
 	panel.find('.recipe-content').remove();
 	panel.find('h2').fadeIn(500);
 	panel.switchClass('expanded', '', 500);
-}
-
-function getRecipes(input) {
-	$.ajax({
-		url: '/results',
-		error: function() {
-			console.log("Error");
-		}
-	});
-	$.ajax({
-		url: '/send_fake_json',
-		dataType: 'json',
-		success: function(data) {
-			parseData(data);
-		},
-		error: function() {
-			//failed GET request, inform user
-			$('.result').html('<p class="error" style="text-align: center;"><strong>Opps!</strong> Try that again in a few minutes.</p>');
-		}
-	});
-} 
-
-function parseData(data) {
-	//console.log(data);
-	var json_data = JSON.stringify(data, null, 2);
-	//console.log(json_data);
-	var source = $('#recipe-template');
-	var template = Handlebars.compile(source);
-	console.log("hi");
-	$('.result') = template(json_data);
 }
