@@ -20,3 +20,4 @@ class RecipeForm(Form):
     time = IntegerField('time', validators = [Required()])
     category = TextField('category', validators = [Required()])
     servings = IntegerField('servings', validators = [Required()])
+"""
