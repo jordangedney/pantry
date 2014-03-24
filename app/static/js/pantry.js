@@ -2,11 +2,13 @@ jQuery('document').ready(function(){
 	jQuery('.result').on('click', '.panel h2', function(){
 		expand(jQuery(this).parent('.panel'));
 	});
-	$('#search-button').blur(function() {
+	$('#search-button').click(function() {
 		var input = $('#search-bar').val();
-		if(input.length === 0) {
+		if(input.length == 0) {
+			console.log(input);
 			return false;
 		}
+		console.log(input);
 	});
 });
 function expand(panel){

@@ -130,23 +130,17 @@ def new_recipe():
         flash(recipe.name + " created!")
     return render_template('new_recipe.html', form = form)
 
-@app.route('/results')
-def results():
-    return render_template('search_results.html')
 
 @app.route('/get_results', methods=['POST'])
 def search_results():
     form = SearchForm()
-    if not form.validate_on_submit():
-        flash("Please enter something to search for!")
-        return redirect('/index')
+    #if not form.validate_on_submit():
+    #    flash("Please enter something to search for!")
+    #    return redirect('/index')
     
     #results = models.Recipes.query.filter_by(ingredient = form.search.data)   
     results = [{"name": "PBJ", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" },
     {"name": "Pizza", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" },
     {"name": "Cheeseburger", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" }]
-    results = Recipes.query.filter_by(ingredient = ingredient)
-    #if results == None:
-    #    flash('Results ' + ingredient + ' not found.')
-    #    return redirect(url_for('index'))
+    
     return render_template('search_results.html', results = results)
