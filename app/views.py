@@ -111,7 +111,7 @@ def get_users():
 # Search Related Views -------------------------------------------------------
 
 @app.route('/new_recipe', methods = ['GET', 'POST'])
-def new_user():
+def new_recipe():
     form = RecipeForm()
     if form.validate_on_submit():
         recipe = models.Recipe(name = form.name.data,
