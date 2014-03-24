@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form
-from wtforms import TextField, BooleanField
+from wtforms import TextField, BooleanField, IntegerField
 from wtforms.validators import Required
 
 class LoginForm(Form):
@@ -9,15 +9,12 @@ class LoginForm(Form):
 class UserForm(Form):
     first = TextField('first', validators = [Required()])
     last = TextField('last', validators = [Required()])
-    email = TextField('last', validators = [Required()])
+    email = TextField('email', validators = [Required()])
 
-if False: """
 class RecipeForm(Form):
-    # TODO: need to set time and  servings to appropriate fields
-    name = TextField('first', validators = [Required()])
-    ingredients = TextField('last', validators = [Required()])
-    instructions = TextField('last', validators = [Required()])
-    time = TextField('last', validators = [Required()])
-    category = TextField('last', validators = [Required()])
-    servings = TextField('last', validators = [Required()])
-    author = TextField('last', validators = [Required()]) """
+    name = TextField('name', validators = [Required()])
+    ingredients = TextField('ingredients', validators = [Required()])
+    instructions = TextField('instructions', validators = [Required()])
+    time = IntegerField('time', validators = [Required()])
+    category = TextField('category', validators = [Required()])
+    servings = IntegerField('servings', validators = [Required()])

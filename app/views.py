@@ -30,7 +30,6 @@ def login():
                            providers = app.config['OPENID_PROVIDERS'])
 
 
-
 @app.before_request
 def before_request():
     g.user = current_user
@@ -39,7 +38,6 @@ def before_request():
 @lm.user_loader
 def load_user(id):
     return User.query.get(int(id))
-
 
 
 @oid.after_login
@@ -63,12 +61,10 @@ def after_login(resp):
     return redirect(request.args.get('next') or url_for('index'))
 
 
-
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
-
 
 
 @app.route('/user/<email>')
@@ -80,7 +76,6 @@ def user(email):
         return redirect(url_for('index'))
     
     return render_template('user.html', user = user)
-
 
 
 @app.route('/new_user', methods = ['GET', 'POST'])
@@ -112,7 +107,27 @@ def get_users():
     users = models.User.query.all()
     return render_template('print_users.html', users = users)
 
+
 # Search Related Views -------------------------------------------------------
+
+@app.route('/new_recipe', methods = ['GET', 'POST'])
+def new_user():
+    form = RecipeForm()
+    if form.validate_on_submit():
+        recipe = models.Recipe(name = form.name.data,
+                           ingredients = form.ingredients.data,  
+                           instructions = form.instructions.data,
+                           time = form.time.data,
+                           category = form.category.data,
+                           servings = form.servings.data,
+                           user_id = g.user.get_id()
+                           )
+        db.session.add(recipe)
+        db.session.commit()
+
+        flash(recipe.name + " created!")
+    return render_template('new_recipe.html', form = form)
+
 @app.route('/results')
 def results():
     return render_template('search_results.html')
