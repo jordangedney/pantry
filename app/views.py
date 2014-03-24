@@ -3,7 +3,7 @@ from models import User, ROLE_USER, ROLE_ADMIN
 from flask import render_template, request, flash, redirect, session, url_for, request, g, jsonify
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy import create_engine
-from forms import LoginForm, UserForm, SearchForm
+from forms import LoginForm, UserForm, SearchForm, RecipeForm
 
 
 @app.route('/')
