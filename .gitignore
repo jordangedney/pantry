@@ -4,5 +4,5 @@
 .sql
 .sqplite
 .pyc
-
-
+.db
+db_repository/
