@@ -1,5 +1,6 @@
 from app import app, db, lm, oid
-from models import User, ROLE_USER, ROLE_ADMIN
+import models
+from models import User, ROLE_USER, ROLE_ADMIN, Recipe
 from flask import render_template, request, flash, redirect, session, url_for, request, g, jsonify
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy import create_engine
@@ -84,9 +85,8 @@ def user(email):
 def new_user():
     form = UserForm()
     if form.validate_on_submit():
-        user = models.User(first_name = form.first.data,
-                           last_name = form.last.data,  
-                           email = form.email.data)
+        user = models.User(first_name = form.first_name.data,
+                           last_name = form.last_name.data)
         db.session.add(user)
         db.session.commit()
 
@@ -128,7 +128,13 @@ def new_recipe():
         db.session.commit()
 
         flash(recipe.name + " created!")
+        return redirect('/index')
     return render_template('new_recipe.html', form = form)
+
+@app.route('/get_recipes')
+def get_recipes():
+    recipes = models.Recipe.query.all()
+    return render_template('print_recipes.html', recipes = recipes)
 
 
 @app.route('/get_results', methods=['POST'])
