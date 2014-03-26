@@ -75,7 +75,7 @@ def logout():
 def user(email):
     user = User.query.filter_by(email = email).first()
     if user == None:
-        flash('User ' + nickname + ' not found.')
+        flash('User ' + email + ' not found.')
         return redirect(url_for('index'))
     
     return render_template('user.html', user = user)

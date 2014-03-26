@@ -1,0 +1,35 @@
+from flask.ext.wtf import Form
+from wtforms import TextField, BooleanField, IntegerField
+from wtforms.validators import Required
+
+class LoginForm(Form):
+    remember_me = BooleanField('remember_me', default = True)
+
+class UserForm(Form):
+<<<<<<< Updated upstream
+    first = TextField('first', validators = [Required()])
+    last = TextField('last', validators = [Required()])
+    email = TextField('email', validators = [Required()])
+=======
+    first_name = TextField('first', validators = [Required()])
+    last_name = TextField('last', validators = [Required()])
+>>>>>>> Stashed changes
+
+class RecipeForm(Form):
+<<<<<<< Updated upstream
+    name = TextField('name', validators = [Required()])
+    ingredients = TextField('ingredients', validators = [Required()])
+    instructions = TextField('instructions', validators = [Required()])
+    time = IntegerField('time', validators = [Required()])
+    category = TextField('category', validators = [Required()])
+    servings = IntegerField('servings', validators = [Required()])
+=======
+    # TODO: need to set time and  servings to appropriate fields
+    name = TextField('first', validators = [Required()])
+    ingredients = TextField('last', validators = [Required()])
+    instructions = TextField('last', validators = [Required()])
+    time = TextField('last', validators = [Required()])
+    category = TextField('last', validators = [Required()])
+    servings = TextField('last', validators = [Required()])
+    author = TextField('last', validators = [Required()]) """
+>>>>>>> Stashed changes

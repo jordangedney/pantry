@@ -24,20 +24,18 @@
         </div>
       </section>
       <section class="top-bar-section right">
-      		{% if g.user.is_authenticated() %}
-            <div class="dropdown-label">
-                <a href="{{ url_for('user', email = g.user.email) }}">User Page</a>
-            </div>
+            <a href="#" class="dropdown-label" data-options="is_hover:true" data-dropdown="drop">User Options &raquo;</a>
+            <ul id="drop" class="f-dropdown" data-dropdown-content>
             
-            <div class="dropdown-label">
-                <a href="{{ url_for('logout') }}">Logout</a>
-            </div>
-            {% endif %}
-            {% if g.user.is_authenticated() == false %}
-            <div class="dropdown-label">
-                <a href="{{ url_for('login') }}">Login</a>
-            </div>
-            {% endif %}
+      			{% if g.user.is_authenticated() %}
+            		<li><a href="{{ url_for('user', email = g.user.email) }}">User Page</a></li>
+            		<li><a href="{{ url_for('logout') }}">Logout</a></li>
+            	{% endif %}
+            
+            	{% if g.user.is_authenticated() == false %}
+            		<li><a href="{{ url_for('login') }}">Login</a></li>
+            	{% endif %}
+            </ul>
       </section>
     </nav>
     <div class="content">
