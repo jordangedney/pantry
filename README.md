@@ -14,6 +14,7 @@ flask
 flask-wtf
 flask-sqlalchemy
 sqlalchemy
+sqlalchemy-migrate
 flask-login
 flask-openid
 ```
