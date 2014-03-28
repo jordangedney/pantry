@@ -48,7 +48,7 @@ class Ingredient(db.Model):
     #recipes = db.relationship("Recipe", secondary="RecipeIngredients",backref="ingredients")
 
     def __repr__(self):
-        return '<Post %r>' % (self.name)
+        return '<Ingredient %r>' % (self.name)
 
 class RecipeIngredients(db.Model):
     id = db.Column(db.Integer, primary_key = True)
