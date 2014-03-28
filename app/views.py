@@ -4,7 +4,7 @@ from models import User, ROLE_USER, ROLE_ADMIN, Recipe
 from flask import render_template, request, flash, redirect, session, url_for, request, g, jsonify
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy import create_engine
-from forms import LoginForm, UserForm, SearchForm, RecipeForm
+from forms import LoginForm, SearchForm, RecipeForm, EditUserForm
 
 
 @app.route('/')
@@ -78,6 +78,20 @@ def user(email):
         return redirect(url_for('index'))
     
     return render_template('user.html', user = user)
+
+
+
+@app.route('/edit_user', methods = ['GET', 'POST'])
+@login_required
+def edit_user():
+    form = EditUserForm()
+    if form.validate_on_submit():
+        g.user.first_name = form.first_name.data
+        g.user.last_name = form.last_name.data
+        db.session.commit()
+        return render_template('user.html', user = g.user)
+    return render_template('edit_user.html', title = 'Edit Profile', form = form)
+
 
 
 @app.route('/new_user', methods = ['GET', 'POST'])

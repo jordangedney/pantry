@@ -5,7 +5,7 @@ from wtforms.validators import Required
 class LoginForm(Form):
     remember_me = BooleanField('remember_me', default = True)
 
-class UserForm(Form):
+class EditUserForm(Form):
     first_name = TextField('first', validators = [Required()])
     last_name = TextField('last', validators = [Required()])
 
