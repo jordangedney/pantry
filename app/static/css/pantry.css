@@ -214,3 +214,10 @@ div.panel.expanded{
 .panel.expanded>h2{
 	height:0px;
 }
+.content-box {
+	background: #fff;
+	width: 80%;
+	margin-left: 110px;
+	margin-top: 75px;
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
