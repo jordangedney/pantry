@@ -55,10 +55,16 @@ body *{
 	color: #fff;
 	display: block;
 }
-#drop li a{
+#drop li {
+	width: 100%;
 	color: #fff;
-	background-color: #EB0000;
 }	
+#drop li a {
+	background-color: #EB0000;
+}
+#drop li a:hover {
+	background-color: #BF0000;
+}
 #search-bar{
 	width:70%;
 	top:0;
