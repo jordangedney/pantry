@@ -9,11 +9,11 @@
 {% endblock %}
 {% block content %}
 
-	{% if user.first_name == "" %}
+	{% if user.first_name != "" %}
 		<h1>Firstname: {{user.first_name}} <br> </h1>
 	{% endif %}
 	
-	{% if user.last_name == "" %}
+	{% if user.last_name != "" %}
 		 <h1>Lastname: {{user.last_name}} <br> </h1>
 	{% endif %}
 	

@@ -37,15 +37,15 @@ class Recipe(db.Model):
     servings = db.Column(db.Integer)
     instructions = db.Column(db.String(4000))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    ingredients = db.relationship("Ingredient",secondary="RecipeIngredients",backref="recipes")
+    #ingredients = db.relationship("Ingredient",secondary="RecipeIngredients",backref="recipes")
 
     def __repr__(self):
-        return '<Post %r>' % (self.name)
+        return '<Recipe %r>' % (self.name)
 
 class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(4000), unique = True)
-    recipes = db.relationship("Recipe", secondary="RecipeIngredients",backref="ingredients")
+    #recipes = db.relationship("Recipe", secondary="RecipeIngredients",backref="ingredients")
 
     def __repr__(self):
         return '<Post %r>' % (self.name)

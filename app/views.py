@@ -143,15 +143,15 @@ def search_results():
     #    flash("Please enter something to search for!")
     #    return redirect('/index')
     
-    #results = models.Recipes.query.filter_by(ingredient = form.search.data)   
-    results = [{"name": "PBJ", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" },
+    results = Recipe.query.filter_by(name = form.search.data)
+    '''results = [{"name": "PBJ", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" },
     {"name": "Pizza", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" },
-    {"name": "Cheeseburger", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" }]
+    {"name": "Cheeseburger", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" }]'''
     
     return render_template('search_results.html', results = results)
     
-@app.route('/search_recipe', mehods=['POST'])
-def search_results
+'''@app.route('/search_recipe', methods=['POST'])
+def search_results():
 	form = SearchForm()
-	results = db.session.execute('select r.id, r.name from recipe where r.name like ''%'+form.search.data+'%'')
-	return flask.jsonify(results)
+	results = db.session.execute('select r.id, r.name from recipe where r.name like %r' %form.search.data)
+	return flask.jsonify(results)'''
