@@ -8,5 +8,19 @@
 	<li><a href="#">Link 4444444</a></li>
 {% endblock %}
 {% block content %}
-	<h1>Firstname: {{user.first_name}} Lastname: {{user.last_name}} Email: {{user.email}}</h1>
+
+	{% if user.first_name == "" %}
+		<h1>Firstname: {{user.first_name}} <br> </h1>
+	{% endif %}
+	
+	{% if user.last_name == "" %}
+		 <h1>Lastname: {{user.last_name}} <br> </h1>
+	{% endif %}
+	
+	<h1>Email: {{user.email}} <br> </h1>
+	
+	{% if user == g.user%}
+		<h1><a href="#">Edit Profile</a></h1>
+	{% endif %}
+	
 {% endblock %}

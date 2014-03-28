@@ -71,7 +71,6 @@ def logout():
 
 
 @app.route('/user/<email>')
-@login_required
 def user(email):
     user = User.query.filter_by(email = email).first()
     if user == None:

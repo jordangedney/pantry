@@ -27,8 +27,7 @@ class User(db.Model):
         return unicode(self.id)
 
     def __repr__(self):
-        return '<User %r>' % (self.first_name)
-        #return '<User %r>' % (self.first_name + " " + self.last_name)
+        return '<User %r>' % (self.first_name + " " + self.last_name)
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key = True)
