@@ -153,5 +153,5 @@ def search_results():
 @app.route('/search_recipe', mehods=['POST'])
 def search_results
 	form = SearchForm()
-	results = db.session.execute('select r.id, r.name from recipe where r.id in (select recipe_id from recipeingredients where ingredient.id = '+form.ingredient)
+	results = db.session.execute('select r.id, r.name from recipe where r.name like ''%'+form.search.data+'%'')
 	return flask.jsonify(results)
