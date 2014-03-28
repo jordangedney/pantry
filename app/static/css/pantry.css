@@ -44,17 +44,19 @@ body *{
 }
 .top-bar-section.right .dropdown-label{
 	margin-top: 40px;
-	margin-right: 10px;
+	margin-right: 5px;
 	padding-top:20px;
 	height: 50px;
 	float:right;
-	width:25%;
+	width:30%;
 	line-height:normal;
 	text-align:center;
 	background: #EB0000;
-}
-.top-bar-section.right .dropdown-label a{
 	color: #fff;
+}
+#drop li a{
+	color: #fff;
+	background-color: #EB0000;
 }	
 #search-bar{
 	width:70%;
@@ -62,7 +64,7 @@ body *{
 	display:inline-block;
 }
 #search-button{
-	top: 0;
+	top: 2.5;
 	width:29%;
 	height:37px;
 	display:inline-block;
@@ -73,6 +75,10 @@ body *{
 #suggest-button {
 	position: absolute;
 	top: 50%;
+}
+
+.button:active {
+	background-color: #EB0000;
 }
 .suggest-wrapper{
 	text-align: center;
