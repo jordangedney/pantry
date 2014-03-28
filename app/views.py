@@ -149,3 +149,9 @@ def search_results():
     {"name": "Cheeseburger", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" }]
     
     return render_template('search_results.html', results = results)
+    
+@app.route('/search_recipe', mehods=['POST'])
+def search_results
+	form = SearchForm()
+	results = db.session.execute('select r.id, r.name from recipe where r.id in (select recipe_id from recipeingredients where ingredient.id = '+form.ingredient)
+	return flask.jsonify(results)
