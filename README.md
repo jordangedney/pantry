@@ -1,13 +1,14 @@
 Pantry
 ======
-1. A recipe suggestion app, currently being developed for web 
-2. Installation
-3. Set up virtualenvwrapper.
-4. Make a new virtualenv
-5. pip install -r stable-req.txt
-6. python run.py db upgrade
-7. python run.py runserver
-8. *Bon Appétit!*
+A recipe suggestion app, currently being developed for web 
+
+1. Installation
+2. Set up virtualenvwrapper.
+3. Make a new virtualenv
+4. pip install -r stable-req.txt
+5. python run.py db upgrade
+6. python run.py runserver
+7. *Bon Appétit!*
 
 This app is broken into 4 main parts:
 -------------------------------------
