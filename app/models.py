@@ -30,7 +30,7 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % (self.first_name + " " + self.last_name)
 
-RecipeIngredients = db.Table('RecipeIngredients', Base.metadata,
+'''RecipeIngredients = db.Table('RecipeIngredients', Base.metadata,
 	db.Column('id', db.Integer, primary_key = True),
     db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id')),
     db.Column('ingredient_id', db.Integer, db.ForeignKey('ingredient.id')),
@@ -49,7 +49,7 @@ Recipe = db.Table('Recipe', Base.metadata,
 Ingredient = db.Table('Ingredient', Base.metadata,
 	db.Column('id', db.Integer, primary_key = True),
    	db.Column('name', db.String(4000), unique = True)
-)
+)'''
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(4000), unique = True)
@@ -58,7 +58,7 @@ class Recipe(db.Model):
     servings = db.Column(db.Integer)
     instructions = db.Column(db.String(4000))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    ingredients = db.relationship("Ingredient",secondary=RecipeIngredients,backref="recipes")
+    #ingredients = db.relationship("Ingredient",secondary=RecipeIngredients,backref="recipes")
 
     def __repr__(self):
         return '<Recipe %r>' % (self.name)
@@ -66,7 +66,7 @@ class Recipe(db.Model):
 class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(4000), unique = True)
-    recipes = db.relationship(Recipe, secondary=RecipeIngredients,backref="ingredients")
+    #recipes = db.relationship(Recipe, secondary=RecipeIngredients,backref="ingredients")
 
     def __repr__(self):
         return '<Ingredient %r>' % (self.name)
