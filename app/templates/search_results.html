@@ -1,17 +1,23 @@
 {% extends "base.html" %}
-{% block sidenav %}
-	<h4>Filter Recipes</h4>
-	<hr>
-	<li><a href="#">Name</a></li>
-	<li><a href="#">Type</a></li>
-	<li><a href="#">Ingredient</a></li>
-	<li><a href="#">Cooking Time</a></li>
-{% endblock %}
+
 {% block content %}
+
+		<div class="side-col large-4 columns">
+          <ul class="side-nav">  
+          	<h4>Filter Recipes</h4>
+				<hr>
+				<li><a href="#">Recipes</a></li>
+				<li><a href="#">Ingredients</a></li>
+				<li><a href="#">Time</a></li>
+				<li><a href="#">Difficulty</a></li>      
+          </ul>
+        </div>
+
 	{% for result in results %}
 	<div class="panel">
   		<img src="../static/images/{{ result.name }}.jpg">
 		<h2>{{ result.name }}</h2>
 	</div>
 	{% endfor %}
+	
 {% endblock %}
