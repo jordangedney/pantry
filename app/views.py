@@ -4,7 +4,7 @@ from models import User, ROLE_USER, ROLE_ADMIN, Recipe
 from flask import render_template, request, flash, redirect, session, url_for, request, g, jsonify
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy import create_engine
-from forms import LoginForm, SearchForm, RecipeForm, EditUserForm, IngredientForm
+from forms import LoginForm, SearchForm, RecipeForm, EditUserForm, IngredientForm, IngredientSelector
 
 
 @app.route('/')
@@ -186,3 +186,16 @@ def search_results():
 	form = SearchForm()
 	results = db.session.execute('select r.id, r.name from recipe where r.name like %r' %form.search.data)
 	return flask.jsonify(results)'''
+
+
+
+
+@app.route('/test', methods = ['GET', 'POST'])
+def test():
+    form = IngredientSelector()
+    if form.validate_on_submit():
+        options = form.ingredient.data
+        for each in options:
+            flash(each)
+        return redirect('/test')
+    return render_template('test.html', form = form)

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+<h1>Ingredient Selecting</h1>
+<form action="" method="post" name="test">
+    {{form.hidden_tag()}}
+    <p>
+				{{form.ingredient}}
+    </p>
+    <p><input type="submit" value="Select"></p>
+</form>
+{% endblock %}
+
+
+
+
+
+

@@ -1,6 +1,8 @@
+from app import db, models
 from flask.ext.wtf import Form
-from wtforms import TextField, BooleanField, IntegerField
+from wtforms import TextField, BooleanField, IntegerField, SelectMultipleField
 from wtforms.validators import Required
+from operator import itemgetter
 
 class LoginForm(Form):
     remember_me = BooleanField('remember_me', default = True)
@@ -22,3 +24,15 @@ class RecipeForm(Form):
 
 class IngredientForm(Form):
     name = TextField('name', validators = [Required()])
+
+class IngredientSelector(Form):
+    ingredients = models.Ingredient.query.all()
+    choices = []
+    for each in ingredients:
+        tup = (str(each.id), each.name)
+        choices.append(tup)
+
+    # Sort the list alphabetically
+    choices = sorted(choices, key=itemgetter(1))
+
+    ingredient = SelectMultipleField(u'Programming Language', choices = choices)
