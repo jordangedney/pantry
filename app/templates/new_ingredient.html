@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Recipe Creation Kit</h1>
+<form action="" method="post" name="new_recipe">
+    {{form.hidden_tag()}}
+    <h3> There is no validity checking atm... you've been warned... </h3>
+    <p>
+        Ingredient Name: <br>
+        {{form.name(size=80)}} <br>
+    </p>
+    <p><input type="submit" value="Add Ingredient"></p>
+</form>
+{% endblock %}

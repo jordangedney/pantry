@@ -4,7 +4,7 @@ from models import User, ROLE_USER, ROLE_ADMIN, Recipe
 from flask import render_template, request, flash, redirect, session, url_for, request, g, jsonify
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy import create_engine
-from forms import LoginForm, SearchForm, RecipeForm, EditUserForm
+from forms import LoginForm, SearchForm, RecipeForm, EditUserForm, IngredientForm
 
 
 @app.route('/')
@@ -123,7 +123,7 @@ def get_users():
     return render_template('print_users.html', users = users)
 
 
-# Search Related Views -------------------------------------------------------
+# Recipe Related Views -------------------------------------------------------
 
 @app.route('/new_recipe', methods = ['GET', 'POST'])
 def new_recipe():
@@ -144,16 +144,33 @@ def new_recipe():
         return redirect('/index')
     return render_template('new_recipe.html', form = form)
 
+@app.route('/new_ingredient', methods = ['GET', 'POST'])
+def new_ingredient():
+    form = IngredientForm()
+    if form.validate_on_submit():
+        ingredient = models.Ingredient(name = form.name.data)
+        db.session.add(ingredient)
+        db.session.commit()
+
+        flash(ingredient.name + " added!")
+        return redirect('/index')
+    return render_template('new_ingredient.html', form = form)
+
 @app.route('/get_recipes')
 def get_recipes():
     recipes = models.Recipe.query.all()
-    return render_template('print_recipes.html', recipes = recipes)
+    return render_template('print_name.html', objects = recipes)
+
+@app.route('/get_ingredients')
+def get_ingredients():
+    ingredients = models.Ingredient.query.all()
+    return render_template('print_name.html', objects = ingredients)
 
 
 @app.route('/get_results', methods=['POST'])
 def search_results():
     form = SearchForm()
-    #if not form.validate_on_submit():
+    # if not form.validate_on_submit():
     #    flash("Please enter something to search for!")
     #    return redirect('/index')
     

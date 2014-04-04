@@ -19,3 +19,6 @@ class RecipeForm(Form):
     time = IntegerField('time', validators = [Required()])
     category = TextField('category', validators = [Required()])
     servings = IntegerField('', validators = [Required()])
+
+class IngredientForm(Form):
+    name = TextField('name', validators = [Required()])
