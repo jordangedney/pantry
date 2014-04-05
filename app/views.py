@@ -25,7 +25,7 @@ def login():
     if form.validate_on_submit():
         session['remember_me'] = form.remember_me.data
         return oid.try_login('https://www.google.com/accounts/o8/id',
-                ask_for = ['nickname', 'email'], ask_for_optional=['fullname'])
+                             ask_for = ['nickname', 'email', 'fullname', 'image'])
     return render_template('login.html', title = 'Sign In', form = form)
 
 
@@ -48,12 +48,17 @@ def after_login(resp):
     if user is None:
         nickname = resp.nickname
         fullname = resp.fullname
+        image = resp.image
+        
         if fullname is not None:
             firstname = fullname.split(' ')[0]
             lastname = fullname.split(' ')[1]
         if nickname is None or nickname == "":
             nickname = resp.email.split('@')[0]
-        user = User(first_name = firstname, last_name = lastname, email = resp.email, role = ROLE_USER)
+        if image is None or image == "":
+            image = "http://upload.wikimedia.org/wikipedia/commons/0/02/Stickman.gif"
+
+        user = User(first_name = firstname, last_name = lastname, image = image, email = resp.email, role = ROLE_USER)
         db.session.add(user)
         db.session.commit()
     remember_me = False
