@@ -17,7 +17,10 @@
 	<div class="panel">
   		<img src="../static/images/{{ result.name }}.jpg">
 		<h2>{{ result.name }}</h2>
+		<div class="recipes">
+			<div class="recipe-left recipe-info"><h2>Ingredients</h2></div>
+			<div class="recipe-center recipe-info"><h2>Details</h2></div>
+			<div class="recipe-right recipe-info"><h2>Other</h2></div>
+		</div>
 	</div>
-	{% endfor %}
-	
 {% endblock %}

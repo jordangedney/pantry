@@ -25,13 +25,15 @@ function expand(panel){
 	});
 	header.append(collapseButton);
 	contentDiv.append(header);
-	
-	var ingredientsDiv = jQuery('<div class="recipe-left recipe-info"><h2>Ingredients</h2></div>');
+	$('.recipe-left').show();
+	//var ingredientsDiv = jQuery('<div class="recipe-left recipe-info"><h2>Ingredients</h2></div>');
 	contentDiv.append(ingredientsDiv);
-	var ingredientsDiv = jQuery('<div class="recipe-center recipe-info"><h2>Details</h2></div>');
+	$('.recipe-center').show();
+	//var ingredientsDiv = jQuery('<div class="recipe-center recipe-info"><h2>Details</h2></div>');
+	$('.recipe-center').show();
 	contentDiv.append(ingredientsDiv);
 	
-	var ingredientsDiv = jQuery('<div class="recipe-right recipe-info"><h2>Other</h2></div>');
+	//var ingredientsDiv = jQuery('<div class="recipe-right recipe-info"><h2>Other</h2></div>');
 	contentDiv.append(ingredientsDiv);
 	panel.append(contentDiv);
 }

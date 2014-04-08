@@ -2,25 +2,32 @@
 
 
 {% block content %}
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
 
+<div class="column large-6 content-box">
+  <h2>Create A Recipe</h2>
+  <hr>
+  <div class="column large-8">
 
-<h1>Ingredient Selecting</h1>
-<form action="" method="post" name="test">
+    <form id="ingredients-form" action="/test" method="post" name="test">
+    <h5>Select Ingredients</h5>
     {{form.hidden_tag()}}
-    <p>
-				{{form.ingredient}}
-    </p>
-    <p><input type="submit" value="Select"></p>
-</form>
+        <p>{{form.ingredient}}</p>
+        <p><input class="button" type="submit" value="Select"></p>
+    </form>
+  </div>
+  <div class="column large-4">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <p>Selected ingredients:</p>
+      <ul class=flashes>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  </div>
+</div>
 {% endblock %}
 
 
