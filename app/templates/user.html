@@ -8,7 +8,28 @@
     <!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
     <div class="large-9 push-3 columns">
       
-      <h1>Recipe Stuff</h1>
+      <!-- <h1>Recipe Stuff</h1> -->
+      
+      <dl class="tabs" data-tab>
+		  <dd class="active"><a href="#panel1">Suggested Recipes</a></dd>
+		  <dd><a href="#panel2">My Recipes</a></dd>
+		  <dd><a href="#panel3">Tab 3</a></dd>
+		  <dd><a href="#panel4">Tab 4</a></dd>
+	  </dl>
+		<div class="tabs-content">
+		  <div class="content active" id="panel1">
+			<p>First panel content goes here...</p>
+		  </div>
+		  <div class="content" id="panel2">
+			<p>Second panel content goes here...</p>
+		  </div>
+		  <div class="content" id="panel3">
+			<p>Third panel content goes here...</p>
+		  </div>
+		  <div class="content" id="panel4">
+			<p>Fourth panel content goes here...</p>
+		  </div>
+		</div>
       
     </div>
     
@@ -20,22 +41,26 @@
       <ul class="side-nav">
       
       	{% if user.image != "" %}
-      		<p><img src="{{user.image}}" /></p>
+      		<br> <li><p><img src="{{user.image}}" /></p></li> <br>
       	{% endif %}
       
     	{% if user.first_name != "" %}
-			First name: {{user.first_name}} <br>
+			<li>First name: {{user.first_name}}</li>
 		{% endif %}
 	
 		{% if user.last_name != "" %}
-		 	Last name: {{user.last_name}} <br>
+		 	<li>Last name: {{user.last_name}} </li>
 		{% endif %}
 	
-		Email: {{user.email}} <br>
+		<li>Email: {{user.email}}</li>
 	
 		{% if user == g.user%}
-			<a href="{{ url_for('edit_user') }}">Edit Profile</a>
+			<li><a href="{{ url_for('edit_user') }}">Edit Profile</a> </li> <br>
 		{% endif %} 
+        
+		<li><a href="#" class="button" id="suggest-button">Make a Recipe</a> </li>
+        
+      </ul>
         
     </div>
     
