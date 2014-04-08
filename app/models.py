@@ -11,6 +11,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     first_name = db.Column(db.String(4000), unique = True)
     last_name = db.Column(db.String(4000), unique = True)
+    image = db.Column(db.String(4000), unique = True)
     email = db.Column(db.String(4000), unique = True)
     recipes = db.relationship('Recipe', backref = 'author', lazy = 'dynamic')
     role = db.Column(db.SmallInteger, default = ROLE_USER)
