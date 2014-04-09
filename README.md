@@ -26,4 +26,5 @@ Important components
 - flask-migrate (adds a simple way to make basic migrations)
 - flask-sqlalchemy (models)
 - flask-wtforms (forms)
+- sqlalchemy-migrate (migrate scripts)
 
