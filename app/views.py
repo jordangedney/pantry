@@ -14,6 +14,14 @@ def index():
     user = g.user
     return render_template('index.html')
 
+
+@app.route('/test_index')
+#@login_required
+def test_index():
+    user = g.user
+    return render_template('test_index.html')
+
+
 # User Related Views ---------------------------------------------------------
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -133,21 +141,32 @@ def get_users():
 @app.route('/new_recipe', methods = ['GET', 'POST'])
 def new_recipe():
     form = RecipeForm()
+    selector = IngredientSelector()
     if form.validate_on_submit():
-        recipe = models.Recipe(name = form.name.data,
-                           ingredients = form.ingredients.data,  
-                           instructions = form.instructions.data,
-                           time = form.time.data,
-                           category = form.category.data,
-                           servings = form.servings.data,
-                           user_id = g.user.get_id()
+        recipe = models.Recipe(
+                            name = form.name.data,
+                            difficulty = form.difficulty.data,
+                            time = form.time.data,
+                            servings = form.servings.data,
+                            instructions = form.instructions.data,
+                            user_id = g.user.get_id()
                            )
+        ingredients = selector.ingredient.data
+
+        for each in ingredients:
+            relationship = models.RecipeIngredients(
+                            recipe_id = recipe.id,
+                            ingredient_id = each
+                           )
+            db.session.add(relationship)
+
         db.session.add(recipe)
         db.session.commit()
 
         flash(recipe.name + " created!")
         return redirect('/index')
-    return render_template('new_recipe.html', form = form)
+    print('hello')
+    return render_template('new_recipe.html', form = form, selector = selector)
 
 @app.route('/new_ingredient', methods = ['GET', 'POST'])
 def new_ingredient():

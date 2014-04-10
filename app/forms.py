@@ -19,7 +19,7 @@ class RecipeForm(Form):
     ingredients = TextField('ingredients', validators = [Required()])
     instructions = TextField('instructions', validators = [Required()])
     time = IntegerField('time', validators = [Required()])
-    category = TextField('category', validators = [Required()])
+    difficulty = IntegerField('difficulty', validators = [Required()])
     servings = IntegerField('', validators = [Required()])
 
 class IngredientForm(Form):
@@ -29,10 +29,9 @@ class IngredientSelector(Form):
     ingredients = models.Ingredient.query.all()
     choices = []
     for each in ingredients:
-        tup = (str(each.id), each.name)
-        choices.append(tup)
+        choices.append((str(each.id), each.name))
 
     # Sort the list alphabetically
     choices = sorted(choices, key=itemgetter(1))
 
-    ingredient = SelectMultipleField(u'Programming Language', choices = choices)
+    ingredient = SelectMultipleField(u'Ingredients', choices = choices)
