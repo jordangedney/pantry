@@ -51,14 +51,14 @@ body *{
 	width:30%;
 	line-height:normal;
 	text-align:center;
-	background: #482c25;
+	background: #91381c;
 	color: #fff;
 	display: block;
 	padding:10px 0px 5px;
 
 }
 #filter{
-	background: #945B4C;
+	background: #eb712f;
 }
 #drop li {
 	width: 100%;
@@ -87,7 +87,7 @@ body *{
 	height:37px;
 	display:inline-block;
 	padding:10px 0px 5px;
-	background-color: #eb712f;
+	background-color: #945B4C;
 	font-family: "Varela Round";
 	border-radius: 2px;
 }

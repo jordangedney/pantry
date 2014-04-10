@@ -4,7 +4,9 @@ from models import User, ROLE_USER, ROLE_ADMIN, Recipe
 from flask import render_template, request, flash, redirect, session, url_for, request, g, jsonify
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy import create_engine
-from forms import LoginForm, SearchForm, RecipeForm, EditUserForm, IngredientForm, IngredientSelector
+from forms import LoginForm, SearchForm, RecipeForm, EditUserForm, IngredientForm
+from flask.ext.wtf import Form
+from wtforms import SelectMultipleField
 
 
 @app.route('/')
@@ -140,6 +142,17 @@ def get_users():
 
 @app.route('/new_recipe', methods = ['GET', 'POST'])
 def new_recipe():
+    class IngredientSelector(Form):
+        ingredients = models.Ingredient.query.all()
+        choices = []
+        for each in ingredients:
+            choices.append((str(each.id), each.name))
+
+        # Sort the list alphabetically
+        choices = sorted(choices, key=itemgetter(1))
+        ingredient = SelectMultipleField(u'Ingredients', choices = choices)
+
+
     form = RecipeForm()
     selector = IngredientSelector()
     if form.validate_on_submit():

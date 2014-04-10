@@ -24,14 +24,3 @@ class RecipeForm(Form):
 
 class IngredientForm(Form):
     name = TextField('name', validators = [Required()])
-
-class IngredientSelector(Form):
-    ingredients = models.Ingredient.query.all()
-    choices = []
-    for each in ingredients:
-        choices.append((str(each.id), each.name))
-
-    # Sort the list alphabetically
-    choices = sorted(choices, key=itemgetter(1))
-
-    ingredient = SelectMultipleField(u'Ingredients', choices = choices)
