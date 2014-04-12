@@ -149,7 +149,7 @@ def new_recipe():
             choices.append((str(each.id), each.name))
 
         # Sort the list alphabetically
-        choices = sorted(choices, key=itemgetter(1))
+        #choices = sorted(choices, key=itemgetter(1))
         ingredient = SelectMultipleField(u'Ingredients', choices = choices)
 
 
@@ -164,22 +164,22 @@ def new_recipe():
                             instructions = form.instructions.data,
                             user_id = g.user.get_id()
                            )
+        db.session.add(recipe)
+        
         ingredients = selector.ingredient.data
 
         for each in ingredients:
-            relationship = models.RecipeIngredients(
-                            recipe_id = recipe.id,
-                            ingredient_id = each
-                           )
-            db.session.add(relationship)
+            recipe.add_ingredient(each)
 
         db.session.add(recipe)
         db.session.commit()
 
         flash(recipe.name + " created!")
         return redirect('/index')
-    print('hello')
+
     return render_template('new_recipe.html', form = form, selector = selector)
+
+
 
 @app.route('/new_ingredient', methods = ['GET', 'POST'])
 def new_ingredient():
@@ -193,15 +193,20 @@ def new_ingredient():
         return redirect('/index')
     return render_template('new_ingredient.html', form = form)
 
+
+
 @app.route('/get_recipes')
 def get_recipes():
     recipes = models.Recipe.query.all()
     return render_template('print_name.html', objects = recipes)
 
+
+
 @app.route('/get_ingredients')
 def get_ingredients():
     ingredients = models.Ingredient.query.all()
     return render_template('print_name.html', objects = ingredients)
+
 
 
 @app.route('/get_results', methods=['POST'])
