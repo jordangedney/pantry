@@ -1,6 +1,6 @@
 from app import app, db, lm, oid
 import models
-from models import User, ROLE_USER, ROLE_ADMIN, Recipe
+from models import User, ROLE_USER, ROLE_ADMIN, Recipe, Ingredient
 from flask import render_template, request, flash, redirect, session, url_for, request, g, jsonify
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy import create_engine
@@ -142,41 +142,43 @@ def get_users():
 
 @app.route('/new_recipe', methods = ['GET', 'POST'])
 def new_recipe():
+    
     class IngredientSelector(Form):
-        ingredients = models.Ingredient.query.all()
+        ingredients = models.Ingredient.query.order_by(models.Ingredient.name.asc())
         choices = []
         for each in ingredients:
             choices.append((str(each.id), each.name))
 
-        # Sort the list alphabetically
-        #choices = sorted(choices, key=itemgetter(1))
         ingredient = SelectMultipleField(u'Ingredients', choices = choices)
-
 
     form = RecipeForm()
     selector = IngredientSelector()
+    
     if form.validate_on_submit():
         recipe = models.Recipe(
-                            name = form.name.data,
-                            difficulty = form.difficulty.data,
-                            time = form.time.data,
-                            servings = form.servings.data,
-                            instructions = form.instructions.data,
-                            user_id = g.user.get_id()
-                           )
-        db.session.add(recipe)
+                name = form.name.data,
+                difficulty = form.difficulty.data,
+                time = form.time.data,
+                servings = form.servings.data,
+                instructions = form.instructions.data,
+                user_id = g.user.get_id()
+        )
         
-        ingredients = selector.ingredient.data
-
-        for each in ingredients:
-            recipe.add_ingredient(each)
-
         db.session.add(recipe)
         db.session.commit()
+        
+        selected_ingredients = selector.ingredient.data
 
-        flash(recipe.name + " created!")
+        for each in selected_ingredients:
+            i = Ingredient.query.get(each)
+            recipe.add_ingredient(i)
+
+        db.session.commit()
+
+        flash(recipe.name + ' created!')
         return redirect('/index')
 
+    flash('Problem creating recipe')
     return render_template('new_recipe.html', form = form, selector = selector)
 
 
@@ -190,7 +192,7 @@ def new_ingredient():
         db.session.commit()
 
         flash(ingredient.name + " added!")
-        return redirect('/index')
+        return redirect('/new_ingredient.html')
     return render_template('new_ingredient.html', form = form)
 
 

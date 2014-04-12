@@ -67,16 +67,10 @@ class Recipe(db.Model):
                         backref = db.backref('recipes', lazy = 'dynamic'))
                         
                         
-    def is_ingredient(self, ingredient):
-        return Ingredient.query.filter(Ingredient.id == ingredient.id).count()
                         
     def add_ingredient(self, ingredient):
-        if self.is_ingredient(ingredient):
-            self.ingredients.append(ingredient)
-        else:
-            new_ingredient = Ingredient(name = ingredient.name)
-            db.session.add(new_ingredient)
-            db.session.commit()
+        self.ingredients.append(ingredient)
+        db.session.commit()
         return self
 
 

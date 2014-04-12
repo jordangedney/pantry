@@ -16,7 +16,7 @@ class SearchForm(Form):
     
 class RecipeForm(Form):
     name = TextField('name', validators = [Required()])
-    ingredients = TextField('ingredients', validators = [Required()])
+    #ingredients = TextField('ingredients', validators = [Required()])
     instructions = TextField('instructions', validators = [Required()])
     time = IntegerField('time', validators = [Required()])
     difficulty = IntegerField('difficulty', validators = [Required()])
