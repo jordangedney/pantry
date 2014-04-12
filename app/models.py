@@ -46,12 +46,14 @@ class User(db.Model):
 
 
 
+# Many to Many table for recipe to ingredient
 ingredients = db.Table('ingredients',
             db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id')),
             db.Column('ingredient_id', db.Integer, db.ForeignKey('ingredient.id'))
 )
 
 
+# Recipe Table
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(4000), unique = True)
@@ -63,11 +65,27 @@ class Recipe(db.Model):
     
     ingredients = db.relationship('Ingredient', secondary = ingredients,
                         backref = db.backref('recipes', lazy = 'dynamic'))
+                        
+                        
+    def is_ingredient(self, ingredient):
+        return Ingredient.query.filter(Ingredient.id == ingredient.id).count()
+                        
+    def add_ingredient(self, ingredient):
+        if self.is_ingredient(ingredient):
+            self.ingredients.append(ingredient)
+        else:
+            new_ingredient = Ingredient(name = ingredient.name)
+            db.session.add(new_ingredient)
+            db.session.commit()
+        return self
+
 
     def __repr__(self):
         return '<Recipe %r>' % (self.name)
 
 
+
+# Ingredient Table
 class Ingredient(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(4000), unique = True)
