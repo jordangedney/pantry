@@ -49,7 +49,9 @@ class User(db.Model):
 # Many to Many table for recipe to ingredient
 ingredients = db.Table('ingredients',
             db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id')),
-            db.Column('ingredient_id', db.Integer, db.ForeignKey('ingredient.id'))
+            db.Column('ingredient_id', db.Integer, db.ForeignKey('ingredient.id')),
+            db.Column('quantity', db.Integer),
+            db.Column('measurement', db.Varchar(4000))
 )
 
 
