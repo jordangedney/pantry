@@ -1,8 +1,8 @@
 .DS_Store
 .DS_Store?
-.log
-.sql
-.sqplite
-.pyc
-.db
+*.log
+*.sql
+*.sqplite
+*.pyc
+*.db
 db_repository/
