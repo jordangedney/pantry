@@ -4,11 +4,14 @@
 <h1>Recipe Creation Kit</h1>
 <form action="" method="post" name="new_recipe">
     {{form.hidden_tag()}}
-    <h3> There is no validity checking atm... you've been warned... </h3>
     <p>
         Ingredient Name: <br>
         {{form.name(size=80)}} <br>
     </p>
-    <p><input type="submit" value="Add Ingredient"></p>
+    <p>
+    <input type="submit" class="button" value="Add Ingredient">
+    <a href="{{ url_for('new_recipe') }}" class="button" id="suggest-button">Back to Create Recipe</a>
+    </p>
+    
 </form>
 {% endblock %}

@@ -32,9 +32,8 @@
         Ingredients: <br>
         {{selector.ingredient}} <br>
     </p>
-    <br>
-    <br>
-    <br>
-    <p><input type="submit" value="Create Recipe"></p>
+    <input  type="submit" class="button" value="Create Recipe">
+    <a href="{{ url_for('new_ingredient') }}" class="button" id="suggest-button">Add an Ingredient</a>
 </form>
+
 {% endblock %}

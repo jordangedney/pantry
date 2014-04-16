@@ -51,7 +51,7 @@ ingredients = db.Table('ingredients',
             db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id')),
             db.Column('ingredient_id', db.Integer, db.ForeignKey('ingredient.id')),
             db.Column('quantity', db.Integer),
-            db.Column('measurement', db.Varchar(4000))
+            db.Column('measurement', db.String(4000), unique = False)
 )
 
 

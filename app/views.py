@@ -92,7 +92,9 @@ def user(email):
         flash('User ' + email + ' not found.')
         return redirect(url_for('index'))
     
-    return render_template('user.html', user = user)
+    user_recipes = Recipe.query.filter_by(user_id = user.id)
+    
+    return render_template('user.html', user = user, user_recipes = user_recipes)
 
 
 
@@ -164,6 +166,10 @@ def new_recipe():
                 user_id = g.user.get_id()
         )
         
+        if Recipe.query.filter_by(name = recipe.name).count() > 0:
+            flash('A recipe with this name already exists!');
+            return render_template('new_recipe.html', form = form, selector = selector)
+        
         db.session.add(recipe)
         db.session.commit()
         
@@ -176,9 +182,9 @@ def new_recipe():
         db.session.commit()
 
         flash(recipe.name + ' created!')
-        return redirect('/index')
+        return redirect(url_for('user', email = g.user.email))
 
-    flash('Problem creating recipe')
+    flash('A field in the recipe form was invalid!')
     return render_template('new_recipe.html', form = form, selector = selector)
 
 
@@ -186,13 +192,21 @@ def new_recipe():
 @app.route('/new_ingredient', methods = ['GET', 'POST'])
 def new_ingredient():
     form = IngredientForm()
+    
     if form.validate_on_submit():
         ingredient = models.Ingredient(name = form.name.data)
+        
+        if Ingredient.query.filter_by(name = ingredient.name).count() > 0:
+            flash('A recipe with this name already exists!');
+            return render_template('new_ingredient.html', form = form)
+        
         db.session.add(ingredient)
         db.session.commit()
-
-        flash(ingredient.name + " added!")
-        return redirect('/new_ingredient.html')
+        
+        flash(ingredient.name + ' added!')
+        return render_template('new_ingredient.html', form = form)
+    
+    flash('Problem with the form!')
     return render_template('new_ingredient.html', form = form)
 
 
@@ -214,22 +228,17 @@ def get_ingredients():
 @app.route('/get_results', methods=['POST'])
 def search_results():
     form = SearchForm()
-    # if not form.validate_on_submit():
-    #    flash("Please enter something to search for!")
-    #    return redirect('/index')
+    '''if not form.validate_on_submit():
+        flash("Please enter something to search for!")
+        return redirect('/index')'''
     
     results = Recipe.query.filter_by(name = form.search.data)
-    '''results = [{"name": "PBJ", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" },
-    {"name": "Pizza", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" },
-    {"name": "Cheeseburger", "image": "http://lh5.ggpht.com/Cc2dlo4nRsMJcp27oHlDIWB8anQ9gTJ-nQzJC9zRu4m3Zob8oG1pS1McaU3Sfm7uGMiUaVtKMAswyq3Br4TKmv0=s230-c" }]'''
+
+    if results == None:
+        flash("No recipes with that name!")
     
     return render_template('search_results.html', results = results)
-    
-'''@app.route('/search_recipe', methods=['POST'])
-def search_results():
-	form = SearchForm()
-	results = db.session.execute('select r.id, r.name from recipe where r.name like %r' %form.search.data)
-	return flask.jsonify(results)'''
+
 
 
 
