@@ -47,7 +47,7 @@
       <ul class="side-nav">
       
       	{% if user.image != "" %}
-      		<br> <li><p><img src="{{user.image}}" /></p></li> <br>
+      		<br><p><img src="{{user.image}}" /></p>
       	{% endif %}
       
     	{% if user.first_name != "" %}
@@ -61,7 +61,7 @@
 		<li>Email: {{user.email}}</li>
 	
 		{% if user == g.user%}
-			<li><a href="{{ url_for('edit_user') }}">Edit Profile</a> </li> <br>
+			<li><a href="{{ url_for('edit_user') }}">Edit Profile</a></li> <br>
 		{% endif %} 
         
 		<li><a href="{{ url_for('new_recipe') }}" class="button" id="suggest-button">Make a Recipe</a> </li>

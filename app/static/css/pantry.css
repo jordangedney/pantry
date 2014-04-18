@@ -243,6 +243,26 @@ div.panel.expanded{
 	display: inline-block;
 	padding: 6px 10px;
 }
+.edit-user-container {
+	padding-top: 30px;
+	padding-right: 50px;
+	padding-left: 50px;
+	position: relative;
+}
+.edit-user-container div.panel {
+	padding-top: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
+	width: 100%;
+	height: auto;
+}
+.edit-user-container div.user-names {
+	padding-top: 45px;
+}
+.edit-user-container div.bottom {
+	bottom: 0;
+	position: absolute;
+}
 #ingredient {
 	background: #ffffff;
 	height: 150px;

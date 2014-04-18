@@ -8,4 +8,4 @@ SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 CSRF_ENABLED = True
 SECRET_KEY = 'you-will-never-guess'
 
-
+PROFILE_IMAGE_PATH = os.path.join(basedir, 'uploads', 'profile_images')

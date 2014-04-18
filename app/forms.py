@@ -1,5 +1,6 @@
 from app import db, models
 from flask.ext.wtf import Form
+from flask.ext.wtf.file import FileField, FileAllowed
 from wtforms import TextField, BooleanField, IntegerField, SelectMultipleField
 from wtforms.validators import Required
 from operator import itemgetter
@@ -8,8 +9,9 @@ class LoginForm(Form):
     remember_me = BooleanField('remember_me', default = True)
 
 class EditUserForm(Form):
-    first_name = TextField('first', validators = [Required()])
-    last_name = TextField('last', validators = [Required()])
+    first_name = TextField('first', validators = [])
+    last_name = TextField('last', validators = [])
+    image = FileField(validators=[FileAllowed(('jpg',),'Invalid file format. JPG and PNG only!')])
 
 class SearchForm(Form):
     search = TextField('search', validators = [Required()])

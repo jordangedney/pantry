@@ -1,13 +1,13 @@
 from app import app, db, lm, oid
-import models
+import models, os
 from models import User, ROLE_USER, ROLE_ADMIN, Recipe, Ingredient
-from flask import render_template, request, flash, redirect, session, url_for, request, g, jsonify
+from flask import render_template, request, flash, redirect, session, url_for, request, g, jsonify, send_from_directory
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy import create_engine
 from forms import LoginForm, SearchForm, RecipeForm, EditUserForm, IngredientForm
 from flask.ext.wtf import Form
 from wtforms import SelectMultipleField
-
+from config import PROFILE_IMAGE_PATH
 
 @app.route('/')
 @app.route('/index')
@@ -94,7 +94,7 @@ def user(email):
     
     user_recipes = Recipe.query.filter_by(user_id = user.id)
     
-    return render_template('user.html', user = user, user_recipes = user_recipes)
+    return render_template('user.html', user = user, user_recipes = user_recipes,)
 
 
 
@@ -103,25 +103,38 @@ def user(email):
 def edit_user():
     form = EditUserForm()
     if form.validate_on_submit():
-        g.user.first_name = form.first_name.data
-        g.user.last_name = form.last_name.data
+        if form.first_name.data:
+            g.user.first_name = form.first_name.data
+        if form.last_name.data:
+            g.user.last_name = form.last_name.data
+        if form.image:
+            form.image.data.save(os.path.join(PROFILE_IMAGE_PATH, '%d.jpg' % g.user.id))
+            g.user.image = "/uploads/profile_images/%d.jpg"% g.user.id
+        db.session.merge(g.user)
         db.session.commit()
+        flash('Your profile has been updated')
         return render_template('user.html', user = g.user)
-    return render_template('edit_user.html', title = 'Edit Profile', form = form)
+
+    return render_template('edit_user.html', title = 'Edit Profile', form = form, user = g.user, action = 'Update')
 
 
+@app.route('/uploads/profile_images/<filename>')
+def send_file(filename):
+    return send_from_directory(PROFILE_IMAGE_PATH, filename)
 
 @app.route('/new_user', methods = ['GET', 'POST'])
 def new_user():
     form = UserForm()
     if form.validate_on_submit():
         user = models.User(first_name = form.first_name.data,
-                           last_name = form.last_name.data)
+                           last_name = form.last_name.data,
+                           image = form.image.data)
         db.session.add(user)
         db.session.commit()
 
         flash(user.first_name + " " + user.last_name + " created!")
     return render_template('new_user.html', form = form)
+
 
 
 @app.route('/delete_user/<email>')

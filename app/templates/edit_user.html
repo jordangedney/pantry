@@ -1,14 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<h1>Edit Profile</h1>
-<form action="" method="post" name="edit_user">
-    {{form.hidden_tag()}}
-    <p>
-    Firstname: {{form.first_name}}<br>
-    Lastname: {{form.last_name}}<br>
-    <input class="button" type="submit" value="Save Changes">
-    <a href="{{ url_for('user', email = g.user.email) }}" class="button" >Cancel</a></p>
-</form>
+<div class="edit-user-container clearfix">
+    <h2>Edit Profile</h2>
+    <form enctype="multipart/form-data" action="" method="post" name="edit_user">
+        {{form.hidden_tag()}}
+        <div class="panel row">
+        	<div class="columns large-4">
+            <p>Change profile image:</p>
+                {% if user.image %}
+                    <img src="{{user.image}}" alt="">
+                {% endif %}
+                <br><br>
+        		{% if filename %}
+        			<img src="{{filename}}">
+        		{% endif %}
+        		<input type="file" name="image">
+        	</div>
+    	    <div class="columns large-4 large-pull-1 user-names">
+    		    Firstname: {{form.first_name}}<br>
+    		    Lastname: {{form.last_name}}<br>    
+    	    </div>
+            <div class="columns large-4 large-push-8 bottom">
+                <input class="button" type="submit" value="Save Changes">
+                <a href="{{ url_for('user', email = g.user.email) }}" class="button" >Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}
