@@ -3,7 +3,7 @@ import models, os
 from models import User, ROLE_USER, ROLE_ADMIN, Recipe, Ingredient
 from flask import render_template, request, flash, redirect, session, url_for, request, g, jsonify, send_from_directory
 from flask.ext.login import login_user, logout_user, current_user, login_required
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, func
 from forms import LoginForm, SearchForm, RecipeForm, EditUserForm, IngredientForm
 from flask.ext.wtf import Form
 from wtforms import SelectMultipleField
@@ -14,7 +14,8 @@ from config import PROFILE_IMAGE_PATH
 #@login_required
 def index():
     user = g.user
-    return render_template('index.html')
+    results = Recipe.query.order_by(func.random()).limit(20)
+    return render_template('index.html', recipes = results)
 
 
 @app.route('/test_index')
@@ -102,6 +103,10 @@ def user(email):
 @login_required
 def edit_user():
     form = EditUserForm()
+    
+    form.first_name.data = g.user.first_name
+    form.last_name.data = g.user.last_name
+    
     if form.validate_on_submit():
         if form.first_name.data:
             g.user.first_name = form.first_name.data

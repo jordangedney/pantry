@@ -9,16 +9,15 @@ class LoginForm(Form):
     remember_me = BooleanField('remember_me', default = True)
 
 class EditUserForm(Form):
-    first_name = TextField('first', validators = [])
-    last_name = TextField('last', validators = [])
-    image = FileField(validators=[FileAllowed(('jpg',),'Invalid file format. JPG and PNG only!')])
+    first_name = TextField('first', validators = [Required()])
+    last_name = TextField('last', validators = [Required()])
+    image = FileField('image', validators=[FileAllowed(['jpg', 'png'], '.JPG and .PNG only!')])
 
 class SearchForm(Form):
     search = TextField('search', validators = [Required()])
     
 class RecipeForm(Form):
     name = TextField('name', validators = [Required()])
-    #ingredients = TextField('ingredients', validators = [Required()])
     instructions = TextField('instructions', validators = [Required()])
     time = IntegerField('time', validators = [Required()])
     difficulty = IntegerField('difficulty', validators = [Required()])
