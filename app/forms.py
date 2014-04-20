@@ -11,7 +11,7 @@ class LoginForm(Form):
 class EditUserForm(Form):
     first_name = TextField('first', validators = [Required()])
     last_name = TextField('last', validators = [Required()])
-    image = FileField('image', validators=[FileAllowed(['jpg', 'png'], '.JPG and .PNG only!')])
+    image = FileField('image', validators=[FileAllowed(('jpg',), '.JPG only!')])
 
 class SearchForm(Form):
     search = TextField('search', validators = [Required()])
