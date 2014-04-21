@@ -250,12 +250,19 @@ def search_results():
         flash("Please enter something to search for!")
         return redirect('/index')'''
     
-    results = Recipe.query.filter_by(name = form.search.data)
+    byname = Recipe.query.filter_by(name = form.search.data)
+    byingredient = Recipe.query.filter(Recipe.ingredients.any(name = form.search.data)).all()
+    
+    # combine 2 results above!!!
+    
 
-    if results == None:
+    if byname == None:
         flash("No recipes with that name!")
     
-    return render_template('search_results.html', results = results)
+    if byingredient == None:
+        flash("No recipes with that ingredient!")
+    
+    return render_template('search_results.html', results = byingredient)
 
 
 
