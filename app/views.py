@@ -265,11 +265,17 @@ def search_results():
     
     # combine 2 results above!!!
     combinedResults = []
+    rids = []
     for i in byname:
-    	combinedResults.append(i)
+    	if (i.id not in rids):
+    		rids.append(i.id);
+    		combinedResults.append(i)
     	
     for i in byingredient:
-    	combinedResults.append(i)
+    	if (i.id not in rids):
+    		rids.append(i.id);
+    		combinedResults.append(i)
+
 
     if byname == None:
         flash("No recipes with that name!")
