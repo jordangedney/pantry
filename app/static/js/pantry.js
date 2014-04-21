@@ -1,5 +1,5 @@
 jQuery('document').ready(function(){
-	jQuery('.result').on('click', '.panel h2', function(){
+	jQuery('.content').on('click', '.panel h2', function(){
 		expand(jQuery(this).parent('.panel'));
 	});
 	$('#search-button').click(function() {
@@ -8,34 +8,16 @@ jQuery('document').ready(function(){
 			console.log(input);
 			return false;
 		}
-		console.log(input);
 	});
 });
 function expand(panel){
 	panel.switchClass('','expanded', 500);
-	var recipeName = panel.find('h2').fadeOut(500).text();
-	var contentDiv = jQuery('<div></div>',{
-		"class":"recipe-content"
-	});
-	
-	var header = jQuery('<h1>'+recipeName+'</h1>');
-	var collapseButton = jQuery('<span class="close">collapse</span>');
+	var recipeName = panel.children('h2').fadeOut(500).text();
+	var collapseButton = panel.find('span.close');
 	collapseButton.click(function(){
 		collapse(panel);
 	});
-	header.append(collapseButton);
-	contentDiv.append(header);
-	$('.recipe-left').show();
-	//var ingredientsDiv = jQuery('<div class="recipe-left recipe-info"><h2>Ingredients</h2></div>');
-	contentDiv.append(ingredientsDiv);
-	$('.recipe-center').show();
-	//var ingredientsDiv = jQuery('<div class="recipe-center recipe-info"><h2>Details</h2></div>');
-	$('.recipe-center').show();
-	contentDiv.append(ingredientsDiv);
 	
-	//var ingredientsDiv = jQuery('<div class="recipe-right recipe-info"><h2>Other</h2></div>');
-	contentDiv.append(ingredientsDiv);
-	panel.append(contentDiv);
 }
 function collapse(panel){
 	panel.find('.recipe-content').remove();
