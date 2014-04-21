@@ -279,3 +279,29 @@ div.panel.expanded>div.recipes{
 #ingredients-form p {
 	clear: both;
 }
+.container {
+	padding-right: 50px;
+	padding-top: 30px;
+	padding-left: 50px;
+	background-color: #FFFFFF;
+}
+#name {
+	max-width: 200px;
+}
+#instructions {
+	max-width: 500px;
+	height: 200px;
+}
+
+#time {
+	max-width: 150px;
+}
+
+#difficulty {
+	max-width: 50px;
+}
+
+#servings {
+	max-width: 100px;
+}
+
