@@ -11,13 +11,14 @@
       <!-- <h1>Recipe Stuff</h1> -->
       
       <dl class="tabs" data-tab>
-          <dd class="active"><a href="#panel1">User Recipes</a></dd>
-		  <dd><a href="#panel2">Suggested Recipes</a></dd>
+          <dd class="active"><a href="#panel1">{{user.first_name}}'s Recipes</a></dd>
+		  <dd><a href="#panel2">Recipes {{user.first_name}} Likes</a></dd>
+		  <dd><a href="#panel3">Recipes Suggested for {{user.first_name}}</a></dd>
 	  </dl>
 		<div class="tabs-content">
 		
 		<div class="content active" id="panel1">
-			<p>User Recipes</p>
+			<p>{{user.first_name}}'s Recipes</p>
 			{% for result in user_recipes %}
 				<div class="panel">
 					<img src="../../uploads/recipe_images/{{result.name}}.jpg">
@@ -32,9 +33,36 @@
 		  </div>
 		
 		  <div class="content" id="panel2">
-			<p>Suggested Recipes</p>
+			<p>Recipes {{user.first_name}} Likes</p>
+			{% for result in user_likes %}
+				<div class="panel">
+					<img src="../../uploads/recipe_images/{{result.name}}.jpg">
+					<h2>{{ result.name }}</h2>
+					<div class="recipes">
+						<div class="recipe-left recipe-info"><h2>Ingredients</h2></div>
+						<div class="recipe-center recipe-info"><h2>Details</h2></div>
+						<div class="recipe-right recipe-info"><h2>Other</h2></div>
+					</div>
+				</div>
+			{% endfor %}
 		  </div>
-		  r
+		  
+		  
+		  <div class="content" id="panel3">
+			<p>Recipes Suggested for {{user.first_name}}</p>
+			{% for result in user_suggested %}
+				<div class="panel">
+					<img src="../../uploads/recipe_images/{{result.name}}.jpg">
+					<h2>{{ result.name }}</h2>
+					<div class="recipes">
+						<div class="recipe-left recipe-info"><h2>Ingredients</h2></div>
+						<div class="recipe-center recipe-info"><h2>Details</h2></div>
+						<div class="recipe-right recipe-info"><h2>Other</h2></div>
+					</div>
+				</div>
+			{% endfor %}
+		  </div>
+		  
 		</div>
       
     </div>

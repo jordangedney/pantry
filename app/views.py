@@ -95,8 +95,10 @@ def user(email):
         return redirect(url_for('index'))
     
     user_recipes = Recipe.query.filter_by(user_id = user.id)
+    user_likes = Recipe.query.filter_by(user_id = user.id)
+    user_suggested = Recipe.query.filter_by(user_id = user.id)
     
-    return render_template('user.html', user = user, user_recipes = user_recipes,)
+    return render_template('user.html', user = user, user_recipes = user_recipes, user_likes = user_likes, user_suggested = user_suggested)
 
 
 
