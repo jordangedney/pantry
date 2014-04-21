@@ -10,7 +10,7 @@ def get_ingredient_ids():
 	return list
 
 def get_ingredients(recipe_id):
-	return models.RecipeIngredients.query.filter_by(id=recipe_id)
+	return Ingredient.query.filter(Ingredient.recipes.any(id=recipe_id))
 
 def ingredients_to_binary_array(recipe_id):
 	number_of_ingredients = len(models.Ingredient.query.all())
