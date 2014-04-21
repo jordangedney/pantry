@@ -16,7 +16,7 @@
 
 
 <h1>Recipe Creation Kit</h1>
-<form action="" method="post" name="new_recipe">
+<form enctype="multipart/form-data" action="" method="post" name="new_recipe">
     {{form.hidden_tag()}}
     <p>
         Recipe Name: <br>
@@ -31,6 +31,16 @@
         {{form.servings(size=80)}} <br>
         Ingredients: <br>
         {{selector.ingredient}} <br>
+    </p>
+    <p>Add a picture for your recipe:</p>
+        {% if form.image %}
+            <img src="{{form.image}}" alt="">
+        {% endif %}
+        <br><br>
+        {% if filename %}
+            <img src="{{recipeimage}}">
+        {% endif %}
+        <input type="file" name="image">
     </p>
     <input  type="submit" class="button" value="Create Recipe">
     <a href="{{ url_for('new_ingredient') }}" class="button" id="suggest-button">Add an Ingredient</a>

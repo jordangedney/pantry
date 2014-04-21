@@ -1,14 +1,15 @@
 from app import app, db, lm, oid
 import models, os
 from models import User, ROLE_USER, ROLE_ADMIN, Recipe, Ingredient
-from flask import render_template, request, flash, redirect, session, url_for, request, g, jsonify, send_from_directory
+from flask import render_template, request, flash, redirect, session, url_for, request, g, jsonify, send_from_directory, send_file
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy import create_engine, func
 from forms import LoginForm, SearchForm, RecipeForm, EditUserForm, IngredientForm
 from flask.ext.wtf import Form
 from wtforms import SelectMultipleField
-from config import PROFILE_IMAGE_PATH
 from sqlalchemy import or_
+from config import PROFILE_IMAGE_PATH, RECIPE_IMAGE_PATH
+
 @app.route('/')
 @app.route('/index')
 #@login_required
@@ -124,7 +125,7 @@ def edit_user():
 
 
 @app.route('/uploads/profile_images/<filename>')
-def send_file(filename):
+def send_pimage(filename):
     return send_from_directory(PROFILE_IMAGE_PATH, filename)
 
 @app.route('/new_user', methods = ['GET', 'POST'])
@@ -173,7 +174,7 @@ def new_recipe():
 
     form = RecipeForm()
     selector = IngredientSelector()
-    
+    rid = models.Recipe
     if form.validate_on_submit():
         recipe = models.Recipe(
                 name = form.name.data,
@@ -181,9 +182,13 @@ def new_recipe():
                 time = form.time.data,
                 servings = form.servings.data,
                 instructions = form.instructions.data,
-                user_id = g.user.get_id()
+                user_id = g.user.get_id(),
+                image = form.image.data
         )
-        
+        if form.image:
+            form.image.data.save(os.path.join(RECIPE_IMAGE_PATH, '%s.jpg' % recipe.name))
+            recipe.image = "/uploads/recipe_images/%s.jpg"% recipe.name
+
         if Recipe.query.filter_by(name = recipe.name).count() > 0:
             flash('A recipe with this name already exists!');
             return render_template('new_recipe.html', form = form, selector = selector)
@@ -206,6 +211,9 @@ def new_recipe():
     return render_template('new_recipe.html', form = form, selector = selector)
 
 
+@app.route('/uploads/recipe_images/<recipeimage>')
+def send_rimage(recipeimage):
+    return send_from_directory(RECIPE_IMAGE_PATH, recipeimage)
 
 @app.route('/new_ingredient', methods = ['GET', 'POST'])
 def new_ingredient():
@@ -268,7 +276,6 @@ def search_results():
         flash("No recipes with that ingredient!")
     
     return render_template('search_results.html', results = combinedResults)
-
 
 
 

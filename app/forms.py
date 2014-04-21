@@ -22,6 +22,7 @@ class RecipeForm(Form):
     time = IntegerField('time', validators = [Required()])
     difficulty = IntegerField('difficulty', validators = [Required()])
     servings = IntegerField('', validators = [Required()])
+    image = FileField('image', validators=[FileAllowed(('jpg',), '.JPG only!')])
 
 class IngredientForm(Form):
     name = TextField('name', validators = [Required()])

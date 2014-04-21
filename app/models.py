@@ -81,6 +81,7 @@ class Recipe(db.Model):
     servings = db.Column(db.Integer)
     instructions = db.Column(db.String(4000))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    image = db.Column(db.String(4000), unique = False)
     
     ingredients = db.relationship('Ingredient', secondary = ingredients,
                         backref = db.backref('recipes', lazy = 'dynamic'))
