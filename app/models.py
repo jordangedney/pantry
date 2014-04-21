@@ -43,16 +43,19 @@ class User(db.Model):
     
     def like(self, recipe):
         self.likes.append(recipe)
+        db.session.merge(self)
         return self
     
     def add_recipe(self, recipe):
         if not self.is_recipe(recipe):
             self.recipes.append(recipe)
+            db.session.merge(self)
             return self
     
     def remove_recipe(self, recipe):
         if self.is_recipe(recipe):
             self.recipes.remove(recipe)
+            db.session.merge(self)
             return self
     
     def is_recipe(self,recipe):

@@ -98,7 +98,7 @@ def user(email):
     user_recipes = Recipe.query.filter_by(user_id = user.id)
 
     #Recipes the user has liked
-    user_likes = Recipe.query.filter_by(user_id = user.id)
+    user_likes = Recipe.query.filter(Recipe.likes.any(id = user.id))
 
     #Recipes suggested for the user
     user_suggested = Recipe.query.order_by(func.random()).limit(20)

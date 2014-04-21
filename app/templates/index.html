@@ -4,15 +4,29 @@
         <div class="result large-12 columns">
           <div class="row suggest-wrapper">
 				{% for result in recipes %}
-				<div class="panel">
-					<img src="../../uploads/recipe_images/{{ result.name }}.jpg">
-					<h2>{{ result.name }}</h2>
-					<div class="recipes">
-						<div class="recipe-left recipe-info"><h2>Ingredients</h2></div>
-						<div class="recipe-center recipe-info"><h2>Details</h2></div>
-						<div class="recipe-right recipe-info"><h2>Other</h2></div>
+			<div class="panel">
+				<img src="../../uploads/recipe_images/{{result.name}}.jpg">
+				<h2>{{ result.name }}</h2>
+				<div class="recipes">
+					<div class="recipe-left recipe-info">
+						<h2>Ingredients</h2>
+						{% for ingredient in result.ingredients %}
+							<li>{{ingredient.name}}</li>
+						{% endfor %}
 					</div>
+					<div class="recipe-center recipe-info">
+						<h2>Details</h2>
+						<p>Difficullty: {{result.difficulty}} </p>
+						<p>time: {{result.time}} </p>
+						<p>servings: {{result.servings}} </p>
+					</div>
+					<div class="recipe-right recipe-info">
+						<h2>Instructions</h2>
+						<p>{{result.instructions}}</p>
+					</div>
+					<a href="#" class="button" >Like!</a>
 				</div>
+			</div>
 			{% endfor %}
 		  </div>
         </div>
