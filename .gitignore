@@ -7,3 +7,4 @@
 *.db
 db_repository/
 uploads/profile_images/*.jpg
+uploads/recipe_images/*.jpg
