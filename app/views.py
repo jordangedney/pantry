@@ -93,10 +93,15 @@ def user(email):
     if user == None:
         flash('User ' + email + ' not found.')
         return redirect(url_for('index'))
-    
+
+    #Recipes the user has created
     user_recipes = Recipe.query.filter_by(user_id = user.id)
+
+    #Recipes the user has liked
     user_likes = Recipe.query.filter_by(user_id = user.id)
-    user_suggested = Recipe.query.filter_by(user_id = user.id)
+
+    #Recipes suggested for the user
+    user_suggested = Recipe.query.order_by(func.random()).limit(20)
     
     return render_template('user.html', user = user, user_recipes = user_recipes, user_likes = user_likes, user_suggested = user_suggested)
 
@@ -107,21 +112,20 @@ def user(email):
 def edit_user():
     form = EditUserForm()
     
-    form.first_name.data = g.user.first_name
-    form.last_name.data = g.user.last_name
-    
     if form.validate_on_submit():
-        if form.first_name.data:
-            g.user.first_name = form.first_name.data
-        if form.last_name.data:
-            g.user.last_name = form.last_name.data
+        g.user.first_name = form.first_name.data
+        g.user.last_name = form.last_name.data
         if form.image:
             form.image.data.save(os.path.join(PROFILE_IMAGE_PATH, '%d.jpg' % g.user.id))
             g.user.image = "/uploads/profile_images/%d.jpg"% g.user.id
         db.session.merge(g.user)
         db.session.commit()
         flash('Your profile has been updated')
-        return render_template('user.html', user = g.user)
+        return redirect(url_for('index'))
+
+    else:
+        form.first_name.data = g.user.first_name
+        form.last_name.data = g.user.last_name
 
     return render_template('edit_user.html', title = 'Edit Profile', form = form, user = g.user, action = 'Update')
 

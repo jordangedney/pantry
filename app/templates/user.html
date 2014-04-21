@@ -12,8 +12,8 @@
       
       <dl class="tabs" data-tab>
           <dd class="active"><a href="#panel1">{{user.first_name}}'s Recipes</a></dd>
-		  <dd><a href="#panel2">Recipes {{user.first_name}} Likes</a></dd>
-		  <dd><a href="#panel3">Recipes Suggested for {{user.first_name}}</a></dd>
+          <dd><a href="#panel2">Recipes Suggested for {{user.first_name}}</a></dd>
+		  <!--<dd><a href="#panel3">Recipes {{user.first_name}} Likes</a></dd>-->
 	  </dl>
 		<div class="tabs-content">
 		
@@ -31,10 +31,11 @@
 				</div>
 			{% endfor %}
 		  </div>
-		
+		  
+		  
 		  <div class="content" id="panel2">
-			<p>Recipes {{user.first_name}} Likes</p>
-			{% for result in user_likes %}
+			<p>Recipes Suggested for {{user.first_name}}</p>
+			{% for result in user_suggested %}
 				<div class="panel">
 					<img src="../../uploads/recipe_images/{{result.name}}.jpg">
 					<h2>{{ result.name }}</h2>
@@ -46,11 +47,11 @@
 				</div>
 			{% endfor %}
 		  </div>
-		  
-		  
+		
+		
 		  <div class="content" id="panel3">
-			<p>Recipes Suggested for {{user.first_name}}</p>
-			{% for result in user_suggested %}
+			<p>Recipes {{user.first_name}} Likes</p>
+			{% for result in user_likes %}
 				<div class="panel">
 					<img src="../../uploads/recipe_images/{{result.name}}.jpg">
 					<h2>{{ result.name }}</h2>
