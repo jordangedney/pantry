@@ -115,6 +115,7 @@ def edit_user():
     if form.validate_on_submit():
         g.user.first_name = form.first_name.data
         g.user.last_name = form.last_name.data
+        #if form.image is not None or form.image != "":
         if form.image:
             form.image.data.save(os.path.join(PROFILE_IMAGE_PATH, '%d.jpg' % g.user.id))
             g.user.image = "/uploads/profile_images/%d.jpg"% g.user.id
@@ -126,7 +127,7 @@ def edit_user():
     else:
         form.first_name.data = g.user.first_name
         form.last_name.data = g.user.last_name
-
+    
     return render_template('edit_user.html', title = 'Edit Profile', form = form, user = g.user, action = 'Update')
 
 

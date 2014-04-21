@@ -185,6 +185,9 @@ div.panel.expanded>div.recipes{
 	padding: 5px;
 	cursor:pointer;
 }
+.panel.expanded div.recipes .recipe-left {
+	padding-left: 10px;
+}
 .panel.expanded div.recipes .recipe-info{
 	float:left;
 	width:33.3%;
