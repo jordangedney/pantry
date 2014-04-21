@@ -5,6 +5,16 @@ from sqlalchemy.ext.declarative import declarative_base
 ROLE_USER = 0
 ROLE_ADMIN = 1
 
+
+
+# Many to Many table for likes
+likes = db.Table('likes',
+                 db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+                 db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id'))
+                 )
+
+
+
 # Each class represents a table in the database
 Base = declarative_base()
 class User(db.Model):
@@ -14,6 +24,8 @@ class User(db.Model):
     image = db.Column(db.String(4000), unique = False)
     email = db.Column(db.String(4000), unique = True)
     recipes = db.relationship('Recipe', backref = 'author', lazy = 'dynamic')
+    likes = db.relationship('Recipe', secondary = likes,
+                                  backref = db.backref('likes', lazy = 'dynamic'))
     role = db.Column(db.SmallInteger, default = ROLE_USER)
     
     def is_authenticated(self):
@@ -27,6 +39,10 @@ class User(db.Model):
     
     def get_id(self):
         return unicode(self.id)
+    
+    def like(self, recipe):
+        self.likes.append(recipe)
+        return self
     
     def add_recipe(self, recipe):
         if not self.is_recipe(recipe):
@@ -43,6 +59,7 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % (self.first_name + " " + self.last_name)
+
 
 
 
