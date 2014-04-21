@@ -132,7 +132,7 @@ def edit_user():
 
 
 @app.route('/uploads/profile_images/<filename>')
-def send_pimage(filename):
+def send_pfile(filename):
     return send_from_directory(PROFILE_IMAGE_PATH, filename)
 
 @app.route('/new_user', methods = ['GET', 'POST'])

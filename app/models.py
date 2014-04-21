@@ -21,8 +21,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     first_name = db.Column(db.String(4000), unique = False)
     last_name = db.Column(db.String(4000), unique = False)
-    has_image = db.Column(db.Boolean, default=False)
-    #image = db.Column(db.String(4000), unique = False)
+    #has_image = db.Column(db.Boolean, default=False)
+    image = db.Column(db.String(4000), unique = False)
     email = db.Column(db.String(4000), unique = True)
     recipes = db.relationship('Recipe', backref = 'author', lazy = 'dynamic')
     likes = db.relationship('Recipe', secondary = likes,
