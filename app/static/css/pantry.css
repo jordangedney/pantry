@@ -89,7 +89,7 @@ body *{
 }
 .suggest-wrapper{
 	text-align: center;
-	padding-right: 150px;
+	
 }
 .top-bar-section.center {
 	text-align:center;
@@ -136,8 +136,8 @@ body *{
 }
 .result {
 	display: inline-block;
-	padding: 10px 30px 30px 10px;
-	width:80%;
+	padding: 10px 30px 10px 30px;
+	width:100%;
 	overflow:auto;
 	height: 100%;
 	float:left !important;
@@ -166,42 +166,45 @@ div.panel.expanded{
 	width:20%;
 	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
 }
-.
-.panel.expanded div.recipe-content{
+
+div.panel.expanded>div.recipes{
 	float:left;
 	width:80%;
+	height:200px;
 }
-.panel.expanded div.recipe-content h1{
+.panel.expanded div.recipes h1{
 	text-align:center;
 	margin: 0px 0px 0px 0px;
 	box-shadow: 1px 0 4px rgba(0, 0, 0, 0.4);
 	z-index:999;
+	height:50px;
 }
-.panel.expanded div.recipe-content h1 span{
+.panel.expanded div.recipes h1 span{
 	font-size:12px;
 	float:right;
 	padding: 5px;
 	cursor:pointer;
 }
-.panel.expanded div.recipe-content .recipe-info{
+.panel.expanded div.recipes .recipe-info{
 	float:left;
 	width:33.3%;
 	margin:0;
 	top:50px;
-	height:100%;
+	height:150px;
 }
-.panel.expanded div.recipe-content .recipe-center{
+.panel.expanded div.recipes.recipe-center{
 	float:left;
 	width:33.3%;
 	margin:0;
 	top:50px;
 	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
 }
-.panel.expanded div.recipe-content .recipe-info h2{
+.panel.expanded div.recipes .recipe-info h2{
 	width:100%;
 	font-size:20px;
 	text-align:center;
 	margin:5px 0px 5px 0px;
+	display:block;
 }
 .panel>h2{
 	position: absolute;
@@ -220,7 +223,7 @@ div.panel.expanded{
 	cursor:pointer;
 }
 .panel.expanded>h2{
-	height:0px;
+	height:20px;
 }
 .content-box {
 	background: #fff;
