@@ -13,7 +13,7 @@ jQuery('document').ready(function(){
 function expand(panel){
 	panel.switchClass('','expanded', 500);
 	var recipeName = panel.children('h2').fadeOut(500).text();
-	var collapseButton = panel.find('span.close');
+	var collapseButton = panel.find('span.close a');
 	collapseButton.click(function(){
 		collapse(panel);
 	});
