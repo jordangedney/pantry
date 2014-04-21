@@ -90,7 +90,7 @@ class Recipe(db.Model):
                         
     def add_ingredient(self, ingredient):
         self.ingredients.append(ingredient)
-        db.session.commit()
+        db.session.merge(self)
         return self
 
 
