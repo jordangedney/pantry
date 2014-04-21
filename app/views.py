@@ -8,7 +8,7 @@ from forms import LoginForm, SearchForm, RecipeForm, EditUserForm, IngredientFor
 from flask.ext.wtf import Form
 from wtforms import SelectMultipleField
 from config import PROFILE_IMAGE_PATH
-
+from sqlalchemy import or_
 @app.route('/')
 @app.route('/index')
 #@login_required
@@ -250,11 +250,16 @@ def search_results():
         flash("Please enter something to search for!")
         return redirect('/index')'''
     
-    byname = Recipe.query.filter_by(name = form.search.data)
-    byingredient = Recipe.query.filter(Recipe.ingredients.any(name = form.search.data)).all()
+    byname = Recipe.query.filter(Recipe.name.like('%'+form.search.data.lower()+'%'))
+    byingredient = Recipe.query.filter(Recipe.ingredients.any(Ingredient.name.like('%'+form.search.data.lower()+'%'))).all()
     
     # combine 2 results above!!!
-    
+    combinedResults = []
+    for i in byname:
+    	combinedResults.append(i)
+    	
+    for i in byingredient:
+    	combinedResults.append(i)
 
     if byname == None:
         flash("No recipes with that name!")
@@ -262,7 +267,7 @@ def search_results():
     if byingredient == None:
         flash("No recipes with that ingredient!")
     
-    return render_template('search_results.html', results = byingredient)
+    return render_template('search_results.html', results = combinedResults)
 
 
 
