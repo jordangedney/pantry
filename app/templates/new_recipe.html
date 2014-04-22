@@ -22,7 +22,7 @@
             Instructions: <br>
             {{form.instructions(size=80)}} <br>
             Time (in minutes): <br>
-            {{form.time(size=80)}} <br>
+            {{form.time(size=80)}}<br>
             Difficulty (a number from 1 - 10, please): <br>
             {{form.difficulty(size=80)}} <br>
             Servings: <br>
@@ -35,10 +35,8 @@
             {{selector.ingredient}}
             <br>
         </h5>        
-        <p>
-        Recipe Image(.jpg only):<input type="file" name="image"></p>
-        <input  type="submit" class="button" value="Create Recipe">
-        
+        <p>Recipe Image(.jpg only):<input type="file" name="image"></p>
+        <input id="suggest-button" type="submit" class="button" value="Create Recipe">
     </form>
     </div>
 </div>

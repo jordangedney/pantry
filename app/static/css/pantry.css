@@ -86,7 +86,7 @@ body *{
 	font-family: "Varela Round";
 }
 #suggest-button {
-	position: absolute;
+	position: relative;
 	border: 3px;
 	border-radius: 10px;
 }
