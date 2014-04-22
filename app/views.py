@@ -193,7 +193,7 @@ def new_recipe():
         ingredients = models.Ingredient.query.order_by(models.Ingredient.name.asc())
         choices = []
         for each in ingredients:
-            choices.append((str(each.id), each.name))
+            choices.append((str(each.id), each.name.title()))
 
         ingredient = SelectMultipleField(u'Ingredients', choices = choices)
 
@@ -245,7 +245,7 @@ def new_ingredient():
     form = IngredientForm()
     
     if form.validate_on_submit():
-        ingredient = models.Ingredient(name = form.name.data)
+        ingredient = models.Ingredient(name = form.name.data.title())
         
         if Ingredient.query.filter_by(name = ingredient.name).count() > 0:
             flash('A recipe with this name already exists!');
