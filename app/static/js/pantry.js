@@ -9,6 +9,12 @@ jQuery('document').ready(function(){
 			return false;
 		}
 	});
+	//SlimScroll plug-in for recipe instructions
+	$(function(){
+	    $('.inner-div').slimScroll({
+	        height: '200px'
+	    });
+	});
 });
 function expand(panel){
 	panel.switchClass('','expanded', 500);

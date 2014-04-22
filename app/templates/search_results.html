@@ -19,8 +19,10 @@
 						<p>servings: {{result.servings}} </p>
 					</div>
 					<div class="recipe-right recipe-info">
-						<h2>Instructions</h2>
-						<p>{{result.instructions}}</p>
+						<div class="inner-div">
+							<h2>Instructions</h2>
+							<p>{{result.instructions}}</p>
+						</div>
 					</div>
 					<a href="{{ url_for('like', name = result.name) }}" class="button" >Like!</a>
 					<span class="close"><a class="button">close</a></span>
