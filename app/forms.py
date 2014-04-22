@@ -1,7 +1,7 @@
 from app import db, models
 from flask.ext.wtf import Form
 from flask.ext.wtf.file import FileField, FileAllowed
-from wtforms import TextField, BooleanField, IntegerField, SelectMultipleField
+from wtforms import TextField, TextAreaField, BooleanField, IntegerField, SelectMultipleField
 from wtforms.validators import Required
 from operator import itemgetter
 
@@ -18,7 +18,7 @@ class SearchForm(Form):
     
 class RecipeForm(Form):
     name = TextField('name', validators = [Required()])
-    instructions = TextField('instructions', validators = [Required()])
+    instructions = TextAreaField('instructions', validators = [Required()])
     time = IntegerField('time', validators = [Required()])
     difficulty = IntegerField('difficulty', validators = [Required()])
     servings = IntegerField('', validators = [Required()])
