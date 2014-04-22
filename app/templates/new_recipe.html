@@ -4,15 +4,17 @@
 
 <div class="row">
     <div class="columns large-centered large-10 container">
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul class=flashes>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+        <div class="flashes">
+          {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                    {% for message in messages %}
+                        <li>{{ message }} </li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
     <h1>Recipe Creation Kit</h1>
     <form enctype="multipart/form-data" action="" method="post" name="new_recipe">
         {{form.hidden_tag()}}

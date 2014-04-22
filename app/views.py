@@ -229,7 +229,10 @@ def new_recipe():
 
         flash(recipe.name + ' created!')
         return redirect(url_for('user', email = g.user.email))
-    #flash('A field in the recipe form was invalid!')
+    
+    if form.errors:
+        flash('A field in the recipe form was invalid!')
+    
     return render_template('new_recipe.html', form = form, selector = selector)
 
 
