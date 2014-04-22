@@ -7,6 +7,12 @@
 .cf:after {
     clear: both;
 }
+.panel .recipes{
+	display:none;
+}
+.panel.expanded > .recipes{
+	display:block;
+}
 
 body{
 	font-family:"Varela Round";
