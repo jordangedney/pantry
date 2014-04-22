@@ -21,7 +21,7 @@
             {{form.name(size=80)}} <br>
             Instructions: <br>
             {{form.instructions(size=80)}} <br>
-            Time (in seconds): <br>
+            Time (in minutes): <br>
             {{form.time(size=80)}} <br>
             Difficulty (a number from 1 - 10, please): <br>
             {{form.difficulty(size=80)}} <br>
@@ -30,13 +30,13 @@
             Ingredients: <br>
             {{selector.ingredient}} <br>
         </p>
-            {% if form.image %}
+            <!--{% if form.image %}
                 <img src="{{form.image}}" alt="">
             {% endif %}
             <br><br>
             {% if filename %}
                 <img src="{{recipeimage}}">
-            {% endif %}
+            {% endif %}-->
             <input type="file" name="image">
         </p>
         <input  type="submit" class="button" value="Create Recipe">

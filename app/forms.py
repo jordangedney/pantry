@@ -1,6 +1,6 @@
 from app import db, models
 from flask.ext.wtf import Form
-from flask.ext.wtf.file import FileField, FileAllowed
+from flask.ext.wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import TextField, TextAreaField, BooleanField, IntegerField, SelectMultipleField
 from wtforms.validators import Required
 from operator import itemgetter
@@ -22,7 +22,7 @@ class RecipeForm(Form):
     time = IntegerField('time', validators = [Required()])
     difficulty = IntegerField('difficulty', validators = [Required()])
     servings = IntegerField('', validators = [Required()])
-    image = FileField('image', validators=[FileAllowed(('jpg',), '.JPG only!')])
+    image = FileField('image', validators=[FileRequired(), FileAllowed(('jpg',), '.JPG only!')])
 
 class IngredientForm(Form):
     name = TextField('name', validators = [Required()])
