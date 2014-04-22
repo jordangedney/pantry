@@ -12,6 +12,7 @@
 }
 .panel.expanded > .recipes{
 	display:block;
+	text-align: center;
 }
 
 body{
@@ -324,4 +325,7 @@ div.panel.expanded>div.recipes{
 }
 .inner-div {
 	text-align: left;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 20px;
 }

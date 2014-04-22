@@ -26,10 +26,12 @@
 				<h2>{{ result.name }}</h2>
 				<div class="recipes">
 					<div class="recipe-left recipe-info">
-						<h2>Ingredients</h2>
-						{% for ingredient in result.ingredients %}
-							<li>{{ingredient.name}}</li>
-						{% endfor %}
+						<div class="inner-div">
+							<h2>Ingredients</h2>
+							{% for ingredient in result.ingredients %}
+								<li>{{ingredient.name}}</li>
+							{% endfor %}
+						</div>
 					</div>
 					<div class="recipe-center recipe-info">
 						<h2>Details</h2>
@@ -45,6 +47,7 @@
 					</div>
 					<a href="{{ url_for('like', name = result.name) }}" class="button" >Like!</a>
 					<span class="close"><a class="button">close</a></span>
+					
 				</div>
 			</div>
 			{% endfor %}

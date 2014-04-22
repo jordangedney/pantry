@@ -213,11 +213,9 @@ def new_recipe():
         if form.image:
             form.image.data.save(os.path.join(RECIPE_IMAGE_PATH, '%s.jpg' % recipe.name))
             recipe.image = "/uploads/recipe_images/%s.jpg"% recipe.name
-
         if Recipe.query.filter_by(name = recipe.name).count() > 0:
             flash('A recipe with this name already exists!');
             return render_template('new_recipe.html', form = form, selector = selector)
-        
         db.session.add(recipe)
         db.session.commit()
         
@@ -231,8 +229,7 @@ def new_recipe():
 
         flash(recipe.name + ' created!')
         return redirect(url_for('user', email = g.user.email))
-
-    flash('A field in the recipe form was invalid!')
+    #flash('A field in the recipe form was invalid!')
     return render_template('new_recipe.html', form = form, selector = selector)
 
 
