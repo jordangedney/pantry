@@ -13,7 +13,7 @@ jQuery('document').ready(function(){
 	$(function(){
 	    $('.inner-div').slimScroll({
 	        height: '200px',
-	        wheelStep: '5px'
+	        wheelStep: '2'
 	    });
 	});
 });

@@ -322,4 +322,6 @@ div.panel.expanded>div.recipes{
 	border: 2px solid #EB0000;
 	max-width: 100px;
 }
-
+.inner-div {
+	text-align: left;
+}
