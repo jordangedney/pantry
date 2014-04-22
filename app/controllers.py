@@ -1,5 +1,4 @@
-from app import app, db
-import models
+from app import app, db, models
 
 
 def get_ingredient_ids():
@@ -32,7 +31,7 @@ def number_of_shared_ingredients(first_id, second_id):
 	array_second = ingredients_to_binary_array(ingredients_in_second)
 
 	shared_ingredients = 0
-	for x in range(len(array_first):
+	for x in range(len(array_first)):
 		first = array_first.pop()
 		second = array_second.pop()
 		if first == second:
