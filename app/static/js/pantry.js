@@ -12,7 +12,8 @@ jQuery('document').ready(function(){
 	//SlimScroll plug-in for recipe instructions
 	$(function(){
 	    $('.inner-div').slimScroll({
-	        height: '200px'
+	        height: '200px',
+	        wheelStep: '5px'
 	    });
 	});
 });
