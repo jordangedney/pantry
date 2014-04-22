@@ -87,7 +87,8 @@ body *{
 }
 #suggest-button {
 	position: absolute;
-	
+	border: 3px;
+	border-radius: 10px;
 }
 
 .button:active {
@@ -95,7 +96,6 @@ body *{
 }
 .suggest-wrapper{
 	text-align: center;
-	
 }
 .top-bar-section.center {
 	text-align:center;
@@ -277,13 +277,12 @@ div.panel.expanded>div.recipes{
 }
 #ingredient {
 	background: #ffffff;
-	height: 150px;
-	width: 420px;
-	border: 4px solid #EB0000;
+	height: 300px;
+	width: 200px;
+	border: 2px solid #EB0000;
 	border-radius: 10px;
 	font-size: 14px;
 	font-family:"Varela Round";
-	float: left;
 }
 #ingredients-form p {
 	clear: both;
@@ -295,22 +294,32 @@ div.panel.expanded>div.recipes{
 	background-color: #FFFFFF;
 }
 #name {
+	border-radius: 10px;
+	border: 2px solid #EB0000;
 	max-width: 200px;
 }
 #instructions {
+	border-radius: 10px;
+	border: 2px solid #EB0000;
 	max-width: 500px;
 	height: 200px;
 }
 
 #time {
+	border-radius: 10px;
+	border: 2px solid #EB0000;
 	max-width: 150px;
 }
 
 #difficulty {
+	border-radius: 10px;
+	border: 2px solid #EB0000;
 	max-width: 50px;
 }
 
 #servings {
+	border-radius: 10px;
+	border: 2px solid #EB0000;
 	max-width: 100px;
 }
 
