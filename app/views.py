@@ -166,6 +166,24 @@ def get_users():
     return render_template('print_users.html', users = users)
 
 
+
+@app.route('/like/<name>')
+@login_required
+def like(name):
+    recipe = Recipe.query.filter_by(name = name).first()
+    if recipe == None:
+        flash('Recipe ' + name + ' not found.')
+        return redirect(url_for('index'))
+    u = g.user.like(recipe)
+    if u is None:
+        flash('Cannot like ' + name + '.')
+        return redirect(url_for('user', nickname = nickname))
+    db.session.commit()
+    flash('You now like ' + name + '!')
+    return redirect(url_for('user', email = g.user.email))
+
+
+
 # Recipe Related Views -------------------------------------------------------
 
 @app.route('/new_recipe', methods = ['GET', 'POST'])

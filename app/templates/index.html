@@ -24,7 +24,7 @@
 						<h2>Instructions</h2>
 						<p>{{result.instructions}}</p>
 					</div>
-					<a href="#" class="button" >Like!</a>
+					<a href="{{ url_for('like', name = result.name) }}" class="button" >Like!</a>
 					<span class="close"><a class="button">Close</a></span>
 				</div>
 			</div>
