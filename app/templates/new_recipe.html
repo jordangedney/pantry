@@ -27,16 +27,13 @@
             {{form.difficulty(size=80)}} <br>
             Servings: <br>
             {{form.servings(size=80)}} <br>
+            <p>
             Ingredients: <br>
             {{selector.ingredient}} <br>
         </p>
-            <!--{% if form.image %}
-                <img src="{{form.image}}" alt="">
-            {% endif %}
-            <br><br>
-            {% if filename %}
-                <img src="{{recipeimage}}">
-            {% endif %}-->
+        <br>
+        <p>
+            Recipe Image(.jpg only): <br>
             <input type="file" name="image">
         </p>
         <input  type="submit" class="button" value="Create Recipe">
