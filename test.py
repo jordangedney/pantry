@@ -13,32 +13,18 @@ from app.controllers import get_ingredient_ids
 
 class Get_Ingredient_Ids_Tests(unittest.TestCase):
 
+		# Fail unless function returns a list
     def testOne(self):
-        print get_ingredient_ids()
+			a = get_ingredient_ids()
+			self.failUnless(isinstance(a, list))
 
-    def testTwo(self):
-        self.failIf(IsOdd(2))
 
 def main():
-    unittest.main()
+	unittest.main()
 
 if __name__ == '__main__':
-    main()
+  main()
 
 
 
 
-# Here's our "unit tests".
-class IsOddTests(unittest.TestCase):
-
-    def testOne(self):
-        self.failUnless(IsOdd(5))
-
-    def testTwo(self):
-        self.failIf(IsOdd(2))
-
-def main():
-    unittest.main()
-
-if __name__ == '__main__':
-    main()

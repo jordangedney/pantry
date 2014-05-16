@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block navbar %}
+<body>
+<div class="content">
+  <nav class="top-bar" data-topbar>
+
+    <section class="top-bar-section left">
+      <h2>
+        <a href="/index" class="logo"> Pantry </a>
+      </h2>
+    </section>
+
+    <section class="top-bar-section center">
+      <div>
+        <form action="{{ url_for('search_results') }}" method="post" name="search">
+          <input name="search" type="text" placeholder="Search For A Recipie..." id="search-bar"><input type="submit" class="alert button expand" id="search-button" value="Submit">
+        </form>
+      </div>
+    </section>
+
+    <section class="top-bar-section right"> 
+      {% if g.user.is_authenticated() %}
+      <a href="#" class="dropdown-label" data-options="is_hover:true" data-dropdown="drop">User Options &raquo;</a>
+      <ul id="drop" class="f-dropdown" data-dropdown-content>
+      <li><a href="{{ url_for('user', email = g.user.email) }}">User Page</a></li> <br>
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      </ul>
+      {% endif %}
+
+      {% if g.user.is_authenticated() == false %}
+        <a href="{{ url_for('login') }}" class="dropdown-label" >Login</a>
+      {% endif %}
+    </section>
+  </nav>
+  {% block content %}{% endblock %}
+</div>
+</body>
+{% endblock %}

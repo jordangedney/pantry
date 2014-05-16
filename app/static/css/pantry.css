@@ -7,27 +7,22 @@
 .cf:after {
     clear: both;
 }
-.panel .recipes{
-	display:none;
-}
-.panel.expanded > .recipes{
-	display:block;
-	text-align: center;
-}
 
 body{
-	font-family:"Varela Round";
-	background: url('../images/plaid2.png') repeat;
-}
-body *{
-	font-family:"Varela Round";
+	background-color: #ffffff;
 }
 .top-bar {
-    background-color: #fff;
+    background-color: #333333;
     box-shadow: 1px 0 4px rgba(0, 0, 0, 0.4);
-    height:90px;
+    height:60px;
     z-index: 999;
     width:100%;
+}
+.logo {
+	color: #fff;
+}
+.logo:hover{
+	color: #fff;
 }
 .top-bar .name h1 a{
 	margin: 0px;
@@ -43,72 +38,74 @@ body *{
 	height:100%;
 }
 .top-bar-section.left{
-	padding:10px 10px 10px 25px;
+	padding:0px 10px 10px 25px;
 }
 
 .top-bar-section.right{
 	padding: 0 0 0 0;
 }
 .top-bar-section.right .dropdown-label{
-	margin-top: 40px;
-	margin-right: 5px;
-	padding-top:20px;
-	height: 50px;
+	margin-top: 20px;
+	margin-right: 15px;
+	height: 40px;
 	float:right;
 	width:30%;
 	line-height:normal;
 	text-align:center;
-	background: #EB0000;
+	background: #666666;
 	color: #fff;
 	display: block;
+	padding: 12px 0px 5px;
+
 }
 #drop li {
 	width: 100%;
 	color: #fff;
 }	
 #drop li a {
-	background-color: #EB0000;
+	background-color: #666666;
 }
 #drop li a:hover {
-	background-color: #BF0000;
+	background-color: #555555;
 }
 #search-bar{
 	width:70%;
 	top:0;
 	display:inline-block;
+	background: #fff;
+	border: 0px solid #FFF;
+	padding: 2px 0px 5px;
 }
 #search-button{
 	top: 2.5;
 	width:29%;
 	height:37px;
 	display:inline-block;
-	padding:10px 0px 5px;
-	background-color: #EB0000;
-	font-family: "Varela Round";
+	padding: 7px 0px 5px;
+	background-color: #008cba
 }
 #suggest-button {
-	position: relative;
-	border: 3px;
-	border-radius: 10px;
+	position: absolute;
+	top: 50%;
 }
 
 .button:active {
-	background-color: #EB0000;
+	background-color: #666666;
 }
 .suggest-wrapper{
 	text-align: center;
+	padding-right: 150px;
 }
 .top-bar-section.center {
 	text-align:center;
+		padding: 8px 0px 5px;
 }
 .button{
-	background-color: #EB0000;
-	font-family: "Varela Round";
+	background-color: #666666;
 }
 .button:hover{
-	background-color: #FFFFFF;
-	font-family: "Varela Round";
-	color: #EB0000;
+	background-color: #333333;
+	color: #d8f3fc;
 	box-shadow: 0px 1px 4px rgba(0.4, 0.4, 0.4, 0.4);
 }
 .side-nav{
@@ -123,7 +120,7 @@ body *{
 	width:100%;
 	position:absolute;
 	margin:0 0 0 0;
-	top:90px;
+	top:0px;
 	bottom:0;
 }
 .content div.row{
@@ -132,22 +129,12 @@ body *{
 	max-width:100%;
 }
 
-.side-col {
-	padding: 0;
-	display:inline-block;
-	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
-	width: 20%;
-	/*min-width:200px;
-	max-width:250px;*/
-	height:100%;
-}
 .result {
-	display: inline-block;
-	padding: 10px 30px 10px 30px;
+	margin:0 0 0 0;
 	width:100%;
-	overflow:auto;
 	height: 100%;
-	float:left !important;
+	display: inline-block;
+
 }
 div .panel {
 	height: 200px;
@@ -173,48 +160,42 @@ div.panel.expanded{
 	width:20%;
 	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
 }
-
-div.panel.expanded>div.recipes{
+.
+.panel.expanded div.recipe-content{
 	float:left;
 	width:80%;
-	height:200px;
 }
-.panel.expanded div.recipes h1{
+.panel.expanded div.recipe-content h1{
 	text-align:center;
 	margin: 0px 0px 0px 0px;
 	box-shadow: 1px 0 4px rgba(0, 0, 0, 0.4);
 	z-index:999;
-	height:50px;
 }
-.panel.expanded div.recipes h1 span{
+.panel.expanded div.recipe-content h1 span{
 	font-size:12px;
 	float:right;
 	padding: 5px;
 	cursor:pointer;
 }
-.panel.expanded div.recipes .recipe-left {
-	padding-left: 10px;
-}
-.panel.expanded div.recipes .recipe-info{
+.panel.expanded div.recipe-content .recipe-info{
 	float:left;
 	width:33.3%;
 	margin:0;
 	top:50px;
-	height:150px;
+	height:100%;
 }
-.panel.expanded div.recipes.recipe-center{
+.panel.expanded div.recipe-content .recipe-center{
 	float:left;
 	width:33.3%;
 	margin:0;
 	top:50px;
 	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
 }
-.panel.expanded div.recipes .recipe-info h2{
+.panel.expanded div.recipe-content .recipe-info h2{
 	width:100%;
 	font-size:20px;
 	text-align:center;
 	margin:5px 0px 5px 0px;
-	display:block;
 }
 .panel>h2{
 	position: absolute;
@@ -227,16 +208,15 @@ div.panel.expanded>div.recipes{
 	min-height:50px;
 	width:200px;
 	margin:0;
-	font-family:"Varela Round";
 	text-align:center;
 	padding: 15px 0px 0px 0px;
 	cursor:pointer;
 }
 .panel.expanded>h2{
-	height:20px;
+	height:0px;
 }
 .content-box {
-	background: #fff;
+	background: #e9e9e9;
 	width: 80%;
 	margin-left: 110px;
 	margin-top: 75px;
@@ -247,85 +227,23 @@ div.panel.expanded>div.recipes{
 	position: absolute;
 	height: 100px;
 	font-size: 16.9px;
-	font-family:"Varela Round";
 }
 .select-style {
 	background: #ffffff repeat scroll right center rgba(0, 0, 0, 0);
-	border: 4px solid #EB0000;
+	border: 4px solid #eb712f;
 	border-radius: 10px;
 	display: inline-block;
 	padding: 6px 10px;
 }
-.edit-user-container {
-	padding-top: 30px;
-	padding-right: 50px;
-	padding-left: 50px;
-	position: relative;
-}
-.edit-user-container div.panel {
-	padding-top: 20px;
-	padding-left: 30px;
-	padding-right: 30px;
-	width: 100%;
-	height: auto;
-}
-.edit-user-container div.user-names {
-	padding-top: 45px;
-}
-.edit-user-container div.bottom {
-	bottom: 0;
-	position: absolute;
-}
 #ingredient {
 	background: #ffffff;
-	height: 300px;
-	width: 200px;
-	border: 2px solid #EB0000;
+	height: 150px;
+	width: 420px;
+	border: 4px solid #eb712f;
 	border-radius: 10px;
 	font-size: 14px;
-	font-family:"Varela Round";
+	float: left;
 }
 #ingredients-form p {
 	clear: both;
-}
-.container {
-	padding-right: 50px;
-	padding-top: 30px;
-	padding-left: 50px;
-	background-color: #FFFFFF;
-}
-#name {
-	border-radius: 10px;
-	border: 2px solid #EB0000;
-	max-width: 200px;
-}
-#instructions {
-	border-radius: 10px;
-	border: 2px solid #EB0000;
-	max-width: 500px;
-	height: 200px;
-}
-
-#time {
-	border-radius: 10px;
-	border: 2px solid #EB0000;
-	max-width: 150px;
-}
-
-#difficulty {
-	border-radius: 10px;
-	border: 2px solid #EB0000;
-	max-width: 50px;
-}
-
-#servings {
-	border-radius: 10px;
-	border: 2px solid #EB0000;
-	max-width: 100px;
-}
-.inner-div {
-	text-align: left;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-right: 20px;
 }
